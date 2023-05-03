@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Movie List</title>
+    <title>Bootstrap 5 theme for developers and startups</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,14 +28,16 @@
             
                 <a class="logo navbar-brand scrollto" href="#hero">
                     <span class="logo-icon-wrapper"><img class="logo-icon" src="assets/images/logo-icon.svg" alt="icon"></span>
-                    <span class="text"><span class="highlight">MOVIE</span>LIST</span>
+                    <span class="text"><span class="highlight">APP</span>KIT</span>
                 </a>
-             
+                <!--//logo-->
+            
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"  aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
+                </button><!--//nav-toggle-->
                 
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav ms-md-auto">
@@ -45,34 +47,33 @@
                         <li class="nav-item"><a class="nav-link scrollto" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
                         <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </div><!--//container-->
             
-        </nav>                
-    </header>
+        </nav><!--//main-nav-->                     
+    </header><!--//header-->
     
     <div id="hero" class="hero-section">
         
-        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-bs-ride="carousel" data-bs-interval="4000">
+        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-bs-ride="carousel" data-bs-interval="10000">
             
             <div class="figure-holder-wrapper">
         		<div class="container">
             		<div class="row justify-content-end">
-                        <div class="figure-box">
-                            <div class="figure-holder1 ">
-                                <img class="figure-image1 img-fluid rounded float-end border border-white" src="assets/images/imac.png" alt="image" />
-                            </div><!--//figure-holder-->
-                            <div class="figure-holder2 ">
-                                <img class="figure-image2 img-fluid rounded float-end border border-white" src="assets/images/imac2.png" alt="image" />
-                            </div><!--//figure-holder-->
-                            <div class="figure-holder3 ">
-                                <img class="figure-image3 img-fluid rounded float-end border border-white" src="assets/images/imac3.png" alt="image" />
-                            </div><!--//figure-holder-->
-                        </div>
+                		<div class="figure-holder">
+                	        <img class="figure-image img-fluid" src="assets/images/imac.png" alt="image" />
+                        </div><!--//figure-holder-->
             		</div><!--//row-->
         		</div><!--//container-->
     		</div><!--//figure-holder-wrapper-->
+            
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li class="active" data-bs-slide-to="0" data-bs-target="#hero-carousel"></li>
+				<li data-bs-slide-to="1" data-bs-target="#hero-carousel"></li>
+				<li data-bs-slide-to="2" data-bs-target="#hero-carousel"></li>
+			</ol>
 			
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">

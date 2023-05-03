@@ -367,7 +367,7 @@ a:focus {
 
 /* ======= Hero Section ======= */
 .hero-section {
-  min-height: 700px;
+  min-height: 560px;
   background: #494d55;
   position: relative;
 }
@@ -375,73 +375,31 @@ a:focus {
 .hero-section .figure-holder-wrapper {
   position: absolute;
   left: 0;
+  bottom: 0;
   width: 100%;
   overflow: hidden;
-  margin-top: 10%;
-  height: 100%;
 }
 
-.hero-section .figure-box {
+.hero-section .figure-holder {
   position: relative;
-  width: 40%;
-  max-height: 100%;
-  overflow: visible;
+  height: 560px;
+  width: 100%;
 }
-.hero-section .figure-holder1 {
+
+.hero-section .figure-holder .figure-image {
   position: absolute;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-section .figure-holder1 .figure-image1 {
-  position: relative;
-  display: block;
-  max-width: 100%;
-  height: auto;
+  bottom: 0;
+  right: 15px;
   z-index: 10;
 }
 
-.hero-section .figure-holder2 {
-  position: relative;
-  width: 40%;
-  margin-right: 50px;
-}
-
-.hero-section .figure-holder2 .figure-image2 {
-  position: relative;
-  bottom: 0;
-  right: 10px;
-  display: block;
-  max-width: 100%;
-  height: auto;
-  z-index: 15;
-}
-
-.hero-section .figure-holder3 {
-  position: relative;
-  width: 30%;
-  margin-right: 100px;
-}
-
-.hero-section .figure-holder3 .figure-image3 {
-  position: relative;
-  bottom: 0;
-  right: 15px;
-  display: block;
-  max-width: 100%;
-  height: auto;
-  z-index: 16;
-}
-
-
 .hero-carousel {
-  height: 700px;
+  height: 560px;
   color: #fff;
 }
 
 .hero-carousel .carousel-inner .carousel-item {
-  height: 700px;
+  height: 560px;
   background-position: center center;
 }
 
