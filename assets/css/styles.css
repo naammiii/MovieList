@@ -368,7 +368,6 @@ a:focus {
 /* ======= Hero Section ======= */
 .hero-section {
   position: relative;
-  
 }
 
 .hero-section .figure-holder-wrapper {
@@ -471,7 +470,8 @@ a:focus {
 
 /* ======= About Section ======= */
 .about-section {
-  padding-top: 90px;
+  padding-top: 50px;
+  height: 120vh;
 }
 
 .about-section .section-title {
@@ -516,18 +516,6 @@ a:focus {
 
 .about-section .items-wrapper .item-desc {
   color: #616670;
-}
-
-.technologies {
-  margin-bottom: 30px;
-}
-
-.technologies .list-inline-item {
-  margin-right: 15px;
-}
-
-.technologies .list-inline-item:last-child {
-  margin-right: 0;
 }
 
 .testimonials {
