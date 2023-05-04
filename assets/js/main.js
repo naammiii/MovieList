@@ -35,9 +35,6 @@ function headerAnimation () {
 
 };
 
-
-
-
 let scrollLinks = document.querySelectorAll('.scrollto');
 const pageNavWrapper = document.getElementById('navbar-collapse');
 
