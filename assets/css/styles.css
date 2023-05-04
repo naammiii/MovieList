@@ -367,9 +367,8 @@ a:focus {
 
 /* ======= Hero Section ======= */
 .hero-section {
-  min-height: 700px;
-  background: #494d55;
   position: relative;
+  
 }
 
 .hero-section .figure-holder-wrapper {
@@ -383,55 +382,56 @@ a:focus {
 
 .hero-section .figure-box {
   position: relative;
-  width: 40%;
+  display: grid;
+  grid-template-areas: "a b" "c b";
+  column-gap: 0px;
+  row-gap: 0px;
+  width: 50%;
   max-height: 100%;
   overflow: visible;
 }
 .hero-section .figure-holder1 {
-  position: absolute;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  grid-area: b;
+  padding-top: 30%;
+  width: 80%;
 }
 
 .hero-section .figure-holder1 .figure-image1 {
   position: relative;
-  display: block;
-  max-width: 100%;
   height: auto;
   z-index: 10;
 }
 
 .hero-section .figure-holder2 {
   position: relative;
-  width: 40%;
-  margin-right: 50px;
+  grid-area: a;
+  width: 65%;
+  
 }
 
 .hero-section .figure-holder2 .figure-image2 {
   position: relative;
-  bottom: 0;
-  right: 10px;
   display: block;
   max-width: 100%;
   height: auto;
-  z-index: 15;
+  z-index: 9;
 }
 
 .hero-section .figure-holder3 {
   position: relative;
-  width: 30%;
-  margin-right: 100px;
+  grid-area: c;
+  width: 50%;
+  margin-top: 20%;
+  margin-left: 5%;
 }
 
 .hero-section .figure-holder3 .figure-image3 {
   position: relative;
-  bottom: 0;
-  right: 15px;
   display: block;
   max-width: 100%;
   height: auto;
-  z-index: 16;
+  z-index: 11;
 }
 
 
@@ -441,28 +441,12 @@ a:focus {
 }
 
 .hero-carousel .carousel-inner .carousel-item {
-  height: 700px;
+  height: 110vh;
   background-position: center center;
 }
 
 .hero-carousel .carousel-inner .item-1 {
   background-image: url("../images/hero-1.jpg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.hero-carousel .carousel-inner .item-2 {
-  background-image: url("../images/hero-2.jpg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.hero-carousel .carousel-inner .item-3 {
-  background-image: url("../images/hero-3.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
