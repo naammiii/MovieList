@@ -16,9 +16,9 @@
     <!-- FontAwesome JS-->
     <script defer src="assets/fontawesome/js/all.min.js"></script>
     <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="views/assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <link id="theme-style" rel="stylesheet" href="views/assets/css/styles.css">
 
 </head>
 
@@ -30,7 +30,7 @@
             <div class="container-fluid position-relative">
 
                 <a class="logo navbar-brand scrollto" href="#hero">
-                    <span class="logo-icon-wrapper"><img class="logo-icon" src="assets/images/logo-icon.svg"
+                    <span class="logo-icon-wrapper"><img class="logo-icon" src="views/assets/images/logo-icon.svg"
                             alt="icon"></span>
                     <span class="text"><span class="highlight">MOVIE</span>LIST</span>
                 </a>
@@ -69,15 +69,15 @@
                         <div class="figure-box">
                             <div class="figure-holder2 start-50">
                                 <img class="figure-image2 img-fluid rounded float-end border border-white"
-                                    src="assets/images/imac2.png" alt="image" />
+                                    src="views/assets/images/imac2.png" alt="image" />
                             </div><!--//figure-holder-->
                             <div class="figure-holder3 start-50">
                                 <img class="figure-image3 img-fluid rounded float-end border border-white"
-                                    src="assets/images/imac3.png" alt="image" />
+                                    src="views/assets/images/imac3.png" alt="image" />
                             </div><!--//figure-holder-->
                             <div class="figure-holder1">
                                 <img class="figure-image1 img-fluid rounded float-end border border-white"
-                                    src="assets/images/imac.png" alt="image" />
+                                    src="views/assets/images/imac.png" alt="image" />
                             </div><!--//figure-holder-->
                         </div>
                     </div><!--//row-->
@@ -118,7 +118,7 @@
                     <div class="item col-md-4 col-12">
                         <div class="item-inner">
                             <div class="figure-holder">
-                                <img class="figure-image" src="assets/images/list.svg" alt="image">
+                                <img class="figure-image" src="views/assets/images/list.svg" alt="image">
                             </div><!--//figure-holder-->
                             <h3 class="item-title">Set the ideal status</h3>
                             <div class="item-desc mb-3">
@@ -130,7 +130,7 @@
                     <div class="item col-md-4 col-12">
                         <div class="item-inner">
                             <div class="figure-holder">
-                                <img class="figure-image" src="assets/images/stars.svg" alt="image">
+                                <img class="figure-image" src="views/assets/images/stars.svg" alt="image">
                             </div><!--//figure-holder-->
                             <h3 class="item-title">Find your next favorite!</h3>
                             <div class="item-desc mb-3">
@@ -142,7 +142,7 @@
                     <div class="item col-md-4 col-12">
                         <div class="item-inner">
                             <div class="figure-holder">
-                                <img class="figure-image" src="assets/images/debate.svg" alt="image">
+                                <img class="figure-image" src="views/assets/images/debate.svg" alt="image">
                             </div><!--//figure-holder-->
                             <h3 class="item-title">Contact with the world</h3>
                             <div class="item-desc mb-3">
@@ -166,70 +166,70 @@
                     <div class="carousel-item active">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac2.png">
+                                <img class="img-fluid" src="views/assets/images/imac2.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac.png">
+                                <img class="img-fluid" src="views/assets/images/imac.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
@@ -251,70 +251,70 @@
                     <div class="carousel-item active">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac2.png">
+                                <img class="img-fluid" src="views/assets/images/imac2.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card card-body">
-                                <img class="img-fluid" src="assets/images/imac3.png">
+                                <img class="img-fluid" src="views/assets/images/imac3.png">
                             </div><!--//card-body-->
                         </div><!--//col-->
                     </div><!--//carousel-item-->
@@ -352,10 +352,10 @@
         </footer><!--//footer-->
 
         <!-- Javascript -->
-        <script src="assets/plugins/jquery-3.6.4.min.js"></script>
-        <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="views/assets/plugins/jquery-3.6.4.min.js"></script>
+        <script src=views/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="views/assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+        <script src="views/assets/js/main.js"></script>
 
 </body>
 
