@@ -370,7 +370,6 @@ a:focus {
 .hero-section .figure-holder-wrapper {
   position: absolute;
   left: 0;
-  bottom: 0;
   width: 100%;
   overflow: hidden;
   margin-top: 10%;
@@ -394,7 +393,7 @@ a:focus {
   width: 80%;
 }
 
-.hero-section .figure-holder {
+.hero-section .figure-holder1 .figure-image1 {
   position: relative;
   height: auto;
   z-index: 10;
@@ -430,6 +429,7 @@ a:focus {
   height: auto;
   z-index: 11;
 }
+
 
 .hero-carousel {
   height: 110vh;
