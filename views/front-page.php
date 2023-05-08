@@ -49,7 +49,7 @@
                         <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
                         <li class="nav-item"><a class="nav-link scrollto nav-access-btn font-weight-bold" href="">Access
                                 the database</a></li>
-                        <li class="nav-item"><a class="nav-link scrollto nav-access-btn font-weight-bold" href=""> Log
+                        <li class="nav-item"><a class="nav-link scrollto nav-access-btn font-weight-bold" > Log
                                 in</a></li>
                     </ul>
                 </div>
@@ -353,7 +353,7 @@
 
         <!-- Javascript -->
         <script src="views/assets/plugins/jquery-3.6.4.min.js"></script>
-        <script src=views/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="views/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="views/assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
         <script src="views/assets/js/main.js"></script>
 

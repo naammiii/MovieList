@@ -34,7 +34,7 @@
                         <div class="card-body p-4 p-sm-5">
                             <div style="justify-content: space-between; display:
                                 flex">
-                                <a href=""><span class="text-muted">&leftarrow;</span></a>
+                                <a href="front-page.php"><span class="text-muted">&leftarrow;</span></a>
                                 <h5
                                     class="card-title text-center mb-5 fw-light
                                     fs-5"
@@ -86,7 +86,7 @@
                                 </div>
                                 <hr class="my-4" />
                             </form>
-                            <form action="registro.php">
+                            <form action="login.php">
                                 Already have an account?
                                 <input
                                     class="btn btn-inverse btn-login

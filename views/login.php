@@ -46,7 +46,7 @@
                             </div>
                             <hr class="my-4">
                         </form>
-                        <form action="registro.php">
+                        <form action="signup.php">
                             Don't have an account?
                             <input class="btn btn-inverse btn-login text-uppercase fw-bold" name="registrarse" type="submit" value='Sign up'>
                         </form>
