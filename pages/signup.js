@@ -27,7 +27,7 @@ function signup(){
                     <div className="card border-0 shadow rounded-3 my-5">
                         <div className="card-body p-4 p-sm-5">
                             <div className="d-flex justify-content-between">
-                                <a href=""><span className="text-muted">&leftarrow;</span></a>
+                                <Link href="/"><span className="text-muted">&leftarrow;</span></Link>
                                 <h5
                                     className="card-title text-center mb-5 fw-light
                                     fs-5">
