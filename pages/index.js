@@ -15,6 +15,8 @@ function Home() {
   useEffect(() => {
     "use strict";
 
+    const linkSty = styles.a;
+
 /* ======= Header animation ======= */   
 const header = document.getElementById('header');  
 
@@ -96,7 +98,7 @@ scrollLinks.forEach((scrollLink) => {
 
                 <a className="logo navbar-brand scrollto" href="#hero">
                     <span className="logo-icon-wrapper"><img className="logo-icon" src="images/logo-icon.svg"
-                            alt="icon" /></span>
+                            alt="icon" style={{width: 30}}/></span>
                     <span className="text"><span className="highlight">MOVIE</span>LIST</span>
                 </a>
 
@@ -114,8 +116,7 @@ scrollLinks.forEach((scrollLink) => {
                         <li className="nav-item"><a className="nav-link scrollto" href="#contact">Contact</a></li>
                         <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" href="">Access
                                 the database</a></li>
-                        <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" > Log
-                                in</a></li>
+                        <li className="nav-item"><Link href="/login" className="nav-link scrollto nav-access-btn font-weight-bold"> Log in </Link></li>
                     </ul>
                 </div>
             </div>
