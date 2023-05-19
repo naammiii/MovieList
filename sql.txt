@@ -8,3 +8,14 @@ Tambien existen una amplia clase de sistemas de gestión que usan bases de datos
 https://datademia.es/blog/que-es-sql
 https://ayudaleyprotecciondatos.es/bases-de-datos/sql/
 https://datascientest.com/es/sql-todo-lo-que-necesitas-saber-sobre-el-lenguaje-de-programacion-de-bases-de-datos#:~:text=La%20historia%20de%20SQL%20comienza,y%20un%20n%C3%BAmero%20de%20tel%C3%A9fono.
+
+
+PYTHON -> JSON -> JS
+https://stackabuse.com/reading-and-writing-json-to-a-file-in-python/
+
+ROUTING REACT
+https://codesandbox.io/s/react-router-product-detail-pages-dynamic-links-tmcjc
+
+ROUTING PHP
+https://gist.github.com/shinigamicorei7/8cccbcfc9eb6f234d8d8
+https://phprouter.com/
