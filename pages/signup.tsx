@@ -72,7 +72,7 @@ const Signup: React.FC = () => {
             <div className="card border-0 shadow rounded-3 my-5">
               <div className="card-body p-4 p-sm-5">
                 <div className="d-flex justify-content-between">
-                  <a href=""><span className="text-muted">&leftarrow;</span></a>
+                  <a href="" onClick={() => Router.push('/')}><span className="text-muted">&leftarrow;</span></a>
                   <h5
                     className="card-title text-center mb-5 fw-light
                                     fs-5">
