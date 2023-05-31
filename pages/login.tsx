@@ -23,7 +23,7 @@ export default function Login ()
     async function getUsers() {
         try {
             const response = fetch('/api/get/getUsers', {
-                method: 'GET',
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
 
