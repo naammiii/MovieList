@@ -9,7 +9,7 @@ const dbpass = cookies.get('userpass');
 
 export default async function handle(req, res) {
 var result;
-  if(bcrypt.compare(pass, dbpass))result = true;
+  if(await bcrypt.compare(pass, dbpass))result = true;
   else result = false;
   res.json(result);
 }
