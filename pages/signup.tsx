@@ -2,9 +2,9 @@
 
 import Head from 'next/head';
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
 import Router from 'next/router';
 import { useEffect } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Signup: React.FC = () => {
@@ -59,7 +59,7 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <div>
       <Head>
         <title>MovieList - Log in</title>
         <link rel="icon" href="styles/images/logo.svg" />
@@ -72,7 +72,7 @@ const Signup: React.FC = () => {
             <div className="card border-0 shadow rounded-3 my-5">
               <div className="card-body p-4 p-sm-5">
                 <div className="d-flex justify-content-between">
-                  <a href="" onClick={() => Router.push('/')}><span className="text-muted">&leftarrow;</span></a>
+                  <a href="" onClick={() => Router.push('/')}><span className="text-muted"><ArrowBackIcon /></span></a>
                   <h5
                     className="card-title text-center mb-5 fw-light
                                     fs-5">
@@ -150,7 +150,7 @@ const Signup: React.FC = () => {
           margin-left: 1rem;
         }
       `}</style>
-    </Layout>
+    </div>
   );
 };
 
