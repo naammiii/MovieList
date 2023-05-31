@@ -1,15 +1,17 @@
 
-import Cookies from 'universal-cookie';
-
 const bcrypt = require('bcrypt');
-const cookies = new Cookies();
 
-const pass = cookies.get('temppass');
-const dbpass = cookies.get('userpass');
-
-export default async function handle(req, res) {
-var result;
-  if(await bcrypt.compare(pass, dbpass))result = true;
-  else result = false;
-  res.json(result);
+export default async function handle(req, response) {
+  var bool:boolean;
+  const { dbpass, userpass } = req.body;
+  await bcrypt.compare(dbpass, userpass, function(err, match) {
+    if (err){
+    console.log(err);
+  }
+  if (match) {
+    return response.json({success: true, message: 'passwords do match'});
+  } else {
+    return response.json({success: false, message: 'passwords do not match'});
+  }
+  });
 }

@@ -49,7 +49,7 @@ const Signup: React.FC = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
         });
-        await Router.push('/welcome');
+        await Router.push('/');
       } catch (error) {
         console.error(error);
       }
