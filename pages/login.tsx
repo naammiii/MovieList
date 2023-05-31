@@ -36,14 +36,22 @@ export default function Login ()
         }
     }
 
-    async function comparePassword(){
+    async function comparePassword(userpass, dbpass){
+        const body = { userpass, dbpass };
         try {
-            const response = fetch('/api/auth', {
-                method: 'GET'
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*", },
+                body: JSON.stringify(body),
             });
-
-            const bool = (await response).json();
-            return bool;
+            try {
+                const data = await response.json();
+                const bool = data['success']
+                return bool;
+              } catch(e) {
+                console.log('error:', e.message);
+              }
 
         } catch (error) {
             console.error(error);
@@ -55,17 +63,13 @@ export default function Login ()
     }
     else{
         const verification = async (usernamev, passwordv) => {
-            var response;
+            var response = false;
             await getUsers()
                 .then(data => {
                     const user = data.find(({ username }) => username === usernamev);
                     console.log(user);
                     if (user) {
-                        cookies.set('temppass', passwordv);
-                        cookies.set('userpass', user['password'])
-                        comparePassword().then((data) => {//TODO NO LO PILLA BIEN REVISAR
-                            cookies.set('temppass', '');
-                            cookies.set('userpass', '');
+                        comparePassword(user['password'], passwordv).then((data) => {
                             if(data) {
                                 cookies.set('userid', user['id']);
                                 response = true;
@@ -73,7 +77,6 @@ export default function Login ()
                         });
                     }
                 });
-                response = false;
                 return response;
         }
     
@@ -125,7 +128,6 @@ export default function Login ()
                                         </div>
                                         <div className="form-floating mb-3">
                                             <input
-                                                autoFocus
                                                 className="form-control"
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 placeholder="Password"
