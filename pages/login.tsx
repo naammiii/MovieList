@@ -2,11 +2,10 @@
 
 import Head from 'next/head';
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
 import Router from 'next/router';
 import { useEffect } from 'react';
 import Cookies from 'universal-cookie';
-import * as bcrypt from "bcrypt"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const cookies = new Cookies();
@@ -59,7 +58,7 @@ export default function Login ()
     }
 
     if(userid != undefined) {
-        Router.push('/');
+        Router.push('/home');
     }
     else{
         const verification = async (usernamev, passwordv) => {
@@ -84,7 +83,7 @@ export default function Login ()
             e.preventDefault();
             verification(username, password).then((data) => {
                 if(data) {
-                    Router.push('/');
+                    Router.push('/home');
                 }else{
                     Router.push('/');
                 }
@@ -92,7 +91,7 @@ export default function Login ()
         };
     
         return (
-            <Layout>
+            <div>
                 <Head>
                     <title>MovieList - Log in</title>
                     <link rel="icon" href="styles/images/logo.svg" />
@@ -105,7 +104,7 @@ export default function Login ()
                             <div className="card border-0 shadow rounded-3 my-5">
                                 <div className="card-body p-4 p-sm-5">
                                     <div className="d-flex justify-content-between">
-                                        <a href="" onClick={() => Router.push('/')}><span className="text-muted">&leftarrow;</span></a>
+                                        <a href="" onClick={() => Router.push('/')}><ArrowBackIcon /></a>
                                         <h5
                                             className="card-title text-center mb-5 fw-light
                                         fs-5">
@@ -171,7 +170,7 @@ export default function Login ()
               margin-left: 1rem;
             }
           `}</style>
-            </Layout>
+          </div>
         );
     }
 };
