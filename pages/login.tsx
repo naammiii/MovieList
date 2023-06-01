@@ -62,7 +62,6 @@ export default function Login ()
     }
     else{
         const verification = async (usernamev, passwordv) => {
-            var response = false;
             await getUsers()
                 .then(data => {
                     const user = data.find(({ username }) => username === usernamev);
@@ -71,12 +70,12 @@ export default function Login ()
                         comparePassword(user['password'], passwordv).then((data) => {
                             if(data) {
                                 cookies.set('userid', user['id']);
-                                response = true;
+                                return true;
                             }
                         });
                     }
-                });
-                return response;
+                })
+            return false;
         }
     
         const submitData = async (e: React.SyntheticEvent) => {
