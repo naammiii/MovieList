@@ -62,29 +62,36 @@ export default function Login ()
     }
     else{
         const verification = async (usernamev, passwordv) => {
-            await getUsers()
+            return getUsers()
                 .then(data => {
                     const user = data.find(({ username }) => username === usernamev);
                     console.log(user);
                     if (user) {
-                        comparePassword(user['password'], passwordv).then((data) => {
+                        console.log('user ok');
+                        return comparePassword(user['password'], passwordv).then((data) => {
                             if(data) {
+                                console.log('user pass ok');
                                 cookies.set('userid', user['id']);
                                 return true;
+                            }else{
+                                console.log('user ok pass no');
+                                return false;
                             }
                         });
+                    }else{
+                        console.log('user no');
+                        return false;
                     }
-                })
-            return false;
+                });
         }
     
         const submitData = async (e: React.SyntheticEvent) => {
             e.preventDefault();
             verification(username, password).then((data) => {
+                console.log(data);
                 if(data) {
                     Router.push('/home');
                 }else{
-                    console.log('jeawndfejknd');
                 }
             });
         };
