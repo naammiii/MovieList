@@ -110,7 +110,7 @@ export default function Login ()
                             <div className="card border-0 shadow rounded-3 my-5">
                                 <div className="card-body p-4 p-sm-5">
                                     <div className="d-flex justify-content-between">
-                                        <a href="" onClick={() => Router.push('/')}><ArrowBackIcon /></a>
+                                        <a  style={{cursor: 'pointer'}} onClick={() => Router.back()}><ArrowBackIcon /></a>
                                         <h5
                                             className="card-title text-center mb-5 fw-light
                                         fs-5">
@@ -143,7 +143,7 @@ export default function Login ()
     
                                         </div>
                                         <input disabled={!password || !username} type="submit" value="Enter" className="btn btn-primary btn-login text-uppercase fw-bold" />
-                                        <a className="btn btn-inverse btn-login text-uppercase fw-bold" href="#" onClick={() => Router.push('/signup')}>
+                                        <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{cursor: 'pointer'}} onClick={() => Router.push('/signup')}>
                                             Don't have an accout?
                                         </a>
                                     </form>

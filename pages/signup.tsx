@@ -72,7 +72,7 @@ const Signup: React.FC = () => {
             <div className="card border-0 shadow rounded-3 my-5">
               <div className="card-body p-4 p-sm-5">
                 <div className="d-flex justify-content-between">
-                  <a href="" onClick={() => Router.push('/')}><span className="text-muted"><ArrowBackIcon /></span></a>
+                  <a  style={{cursor: 'pointer'}} onClick={() => Router.back()}><span className="text-muted"><ArrowBackIcon /></span></a>
                   <h5
                     className="card-title text-center mb-5 fw-light
                                     fs-5">
@@ -117,7 +117,7 @@ const Signup: React.FC = () => {
 
                   </div>
                   <input disabled={!password || !username || !name} type="submit" value="Create" className="btn btn-primary btn-login text-uppercase fw-bold" />
-                  <a className="btn btn-inverse btn-login text-uppercase fw-bold" href="#" onClick={() => Router.push('/login')}>
+                  <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{cursor: 'pointer'}} onClick={() => Router.push('/login')}>
                     Already have an acount?
                   </a>
                 </form>
