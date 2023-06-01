@@ -43,9 +43,9 @@ function Home() {
                         <li className="nav-item "><a className="nav-link scrollto" href="#about">About</a></li>
                         <li className="nav-item"><a className="nav-link scrollto" href="#top">Top</a></li>
                         <li className="nav-item"><a className="nav-link scrollto" href="#contact">Contact</a></li>
-                        <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" onClick={() => Router.push('/home')}>Access
+                        <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" onClick={() => Router.push('/home')} style={{cursor: 'pointer'}}>Access
                                 the database</a></li>
-                        <li className="nav-item"><a href="" onClick={() => Router.push('/login')} className="nav-link scrollto nav-access-btn font-weight-"> Log in </a></li>
+                        <li className="nav-item"><a onClick={() => Router.push('/login')} className="nav-link scrollto nav-access-btn font-weight-" style={{cursor: 'pointer'}}> Log in </a></li>
                     </ul>
                 </div>
             </div>
@@ -69,8 +69,7 @@ function Home() {
                             <p className="intro">It helps you to check and organize all the audiovisual content whenever,
                                 wherever!</p>
                             <a className="btn btn-primary btn-cta"
-                                href="" onClick={() => Router.push('/signup')} 
-                                target="_blank">Sign up now!</a>
+                                 style={{cursor: 'pointer'}} onClick={() => Router.push('/signup')}>Sign up now!</a>
 
                         </div>
                     </div>
@@ -124,7 +123,7 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                    <a className="btn btn-primary" href="" target="_blank">Find out more</a>
+                    <a className="btn btn-primary" onClick={() => Router.push('/home')} style={{cursor: 'pointer'}} >Find out more</a>
 
                 </div>
             </div>
