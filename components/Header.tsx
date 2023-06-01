@@ -27,7 +27,7 @@ const Header: React.FC = () => {
           <li>
             <hr className="dropdown-divider"/>
           </li>
-          <li><a className="dropdown-item" href="#"onClick={() => Router.push('/signout')}>Sign out</a></li>
+          <li><a className="dropdown-item" href="#"onClick={() => Router.push('/logout')}>Sign out</a></li>
         </ul>
       </div>
     </div>
