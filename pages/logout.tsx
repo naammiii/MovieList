@@ -13,7 +13,7 @@ export default function Logout()
     return(
         <>
         <h1>has salido de la sesion</h1>
-        <button onClick={Router.push('/home')}> next </button>
+        <button onClick={() => Router.push('/home')}> next </button>
         </>
     )
 }
