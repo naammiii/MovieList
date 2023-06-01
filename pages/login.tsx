@@ -84,7 +84,7 @@ export default function Login ()
                 if(data) {
                     Router.push('/home');
                 }else{
-                    window.location.reload();
+                    console.log('jeawndfejknd');
                 }
             });
         };
