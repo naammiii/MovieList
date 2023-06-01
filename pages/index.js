@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -27,7 +27,7 @@ function Home() {
             <div className="container-fluid position-relative">
 
                 <a className="logo navbar-brand scrollto" href="#hero">
-                    <span className="logo-icon-wrapper"><img className="logo-icon" src="images/logo-icon.svg"
+                    <span className="logo-icon-wrapper"><img className="logo-icon" src="images/logo.svg"
                             alt="icon" style={{width: 30}}/></span>
                     <span className="text"><span className="highlight">MOVIE</span>LIST</span>
                 </a>
