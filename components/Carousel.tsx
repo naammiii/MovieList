@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-export default function Carousel({ title }) {
+export default function Carousel({ title , data}) {
   return (
     <>
     <h2 style={{ margin: '5px'}}>{title}</h2>
@@ -38,15 +38,15 @@ export default function Carousel({ title }) {
         style={{width: '60%'}}
       >
         <SwiperSlide 
-        style={{backgroundColor: 'red', height: '300px'}}>Slide 1</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 2</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 3</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 4</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 5</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 6</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 7</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 8</SwiperSlide>
-        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>Slide 9</SwiperSlide>
+        style={{backgroundColor: 'red', height: '300px'}}>{data['id']}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[1]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[2]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[3]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[4]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[5]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[6]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[7]}</SwiperSlide>
+        <SwiperSlide style={{backgroundColor: 'red', height: '300px'}}>{data[8]}</SwiperSlide>
       </Swiper>
     </>
   );

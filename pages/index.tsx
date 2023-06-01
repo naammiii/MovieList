@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import 'bootstrap/dist/css/bootstrap.css';
 import styles from '../styles/Home.module.css';
-import Link from 'next/link';
 import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-config.autoAddCss = false
+import Router from 'next/router';
 
 import Carousel from '../components/Carousel';
 import { useEffect } from 'react';
@@ -25,7 +23,7 @@ function Home() {
       <header id="header" className={styles.header}>
         <nav className="main-nav navbar-expand-md" role="navigation">
 
-            <div className="container-fluid position-relative">
+            <div className="container-fluid position-relative d-flex mt-3">
 
                 <a className="logo navbar-brand scrollto" style={{fontSize: '24px'}} href="#hero">
                     <span className="logo-icon-wrapper"><img className="logo-icon" src="images/logo.svg"
@@ -45,9 +43,9 @@ function Home() {
                         <li className="nav-item "><a className="nav-link scrollto" href="#about">About</a></li>
                         <li className="nav-item"><a className="nav-link scrollto" href="#top">Top</a></li>
                         <li className="nav-item"><a className="nav-link scrollto" href="#contact">Contact</a></li>
-                        <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" href="">Access
+                        <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" onClick={() => Router.push('/home')}>Access
                                 the database</a></li>
-                        <li className="nav-item"><Link href="/login" className="nav-link scrollto nav-access-btn font-weight-bold"> Log in </Link></li>
+                        <li className="nav-item"><a href="" onClick={() => Router.push('/login')} className="nav-link scrollto nav-access-btn font-weight-"> Log in </a></li>
                     </ul>
                 </div>
             </div>
@@ -60,27 +58,6 @@ function Home() {
         <div id="hero-carousel" className="hero-carousel carousel carousel-fade slide" data-bs-ride="carousel"
             data-bs-interval="4000">
 
-            <div className="figure-holder-wrapper">
-                <div className="container">
-                    <div className="row justify-content-end">
-                        <div className="figure-box">
-                            <div className="figure-holder2 start-50">
-                                <img className="figure-image2 Image-fluid rounded float-end border border-white"
-                                    src="/images/imac2.png" alt="image" />
-                            </div>
-                            <div className="figure-holder3 start-50">
-                                <img className="figure-image3 Image-fluid rounded float-end border border-white"
-                                    src="/images/imac3.png" alt="image" />
-                            </div>
-                            <div className="figure-holder1">
-                                <img className="figure-image1 Image-fluid rounded float-end border border-white"
-                                    src="/images/imac.png" alt="image" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div className="carousel-inner">
 
                 <div className="carousel-item item-1 active">
@@ -92,7 +69,7 @@ function Home() {
                             <p className="intro">It helps you to check and organize all the audiovisual content whenever,
                                 wherever!</p>
                             <a className="btn btn-primary btn-cta"
-                                href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/appkit-landing-free-bootstrap-theme-for-developers-and-startups/"
+                                href="" onClick={() => Router.push('/signup')} 
                                 target="_blank">Sign up now!</a>
 
                         </div>
@@ -154,9 +131,9 @@ function Home() {
         </div>
 
         <div id="top">
-           <Carousel title='Top movies' />
+           {/* <Carousel title='Top movies' />
 
-           <Carousel title='Top tv series' />
+           <Carousel title='Top tv series' /> */}
         </div>
 
         <div id="contact" className="contact-section">
