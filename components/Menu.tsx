@@ -2,7 +2,7 @@ import React from 'react';
 
 const Menu: React.FC = () => {
     return (
-        <div className="flex-shrink-0 p-3 mt-5" style={{width: '250px'}}>
+        <div className="flex-shrink-0 p-3" style={{width: '250px'}}>
         <a href="#" className="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
           <svg className="bi pe-none me-2" width="30" height="24"></svg>
           <span className="fs-5 fw-semibold">MENU</span>

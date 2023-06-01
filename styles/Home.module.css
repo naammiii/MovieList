@@ -125,7 +125,7 @@
   color: #494d55 !important;
 }
 
-.header .logo {
+#header .logo{
   color: #40babd !important;
   top: 0;
 }
@@ -697,3 +697,4 @@
   #clearBtn {
     cursor: pointer;
   }
+  
