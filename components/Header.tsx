@@ -1,5 +1,6 @@
 // Header.tsx
 import React from 'react';
+import Router from 'next/router';
 import Search from './Search';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -26,7 +27,7 @@ const Header: React.FC = () => {
           <li>
             <hr className="dropdown-divider"/>
           </li>
-          <li><a className="dropdown-item" href="#">Sign out</a></li>
+          <li><a className="dropdown-item" href="#"onClick={() => Router.push('/')}>Sign out</a></li>
         </ul>
       </div>
     </div>
