@@ -9,5 +9,11 @@ export default function Logout()
 {
     
     cookies.remove('userid');
-    Router.push('/home');
+
+    return(
+        <>
+        <h1>has salido de la sesion</h1>
+        <button onClick={Router.push('/home')}> next </button>
+        </>
+    )
 }
