@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
 
-export default function Home({ titleInfo }) {
+export default function Home({ titleInfo, genres }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
@@ -18,7 +18,7 @@ export default function Home({ titleInfo }) {
         <div className={styles.container}>
             <Layout />
             <div className='d-flex' style={{ marginTop: '80px' }}>
-                <Menu />
+                <Menu genres={genres}/>
                 <h2>Top Movies</h2>
                 <Carousel data={titleInfo} />
             </div>
@@ -57,6 +57,17 @@ export async function getServerSideProps() {
         const result2 = await response2.json();
         titleInfo[i] = result2.results;
     }
+    const urlg = 'https://imdb8.p.rapidapi.com/title/list-popular-genres';
+    const optionsg = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '70d8ea326bmshebaeb2f22378e8dp15e6cajsn5ef1f0fef6f4',
+            'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+        }
+    };
+  
+    const responseg = await fetch(urlg, optionsg);
+    const genres = await responseg.json();
 
-    return { props: { titleInfo } };
+    return { props: { titleInfo, genres } };
 }
