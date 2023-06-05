@@ -3,8 +3,7 @@ import { useRouter } from 'next/router'
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 
-
-
+const apiKey = process.env.API_KEY;
 
 const Title = ({titleInfo}) => {
 
@@ -55,7 +54,7 @@ export async function getServerSideProps(context) {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '70d8ea326bmshebaeb2f22378e8dp15e6cajsn5ef1f0fef6f4',
+                'X-RapidAPI-Key': apiKey,
                 'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
             }
         };

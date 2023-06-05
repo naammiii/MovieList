@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
+const apiKey = process.env.API_KEY;
 
 export default function Home({ titleInfo, genres }) {
 
@@ -30,7 +31,7 @@ export async function getServerSideProps() {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '70d8ea326bmshebaeb2f22378e8dp15e6cajsn5ef1f0fef6f4',
+            'X-RapidAPI-Key': apiKey,
             'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
         }
     };
@@ -49,7 +50,7 @@ export async function getServerSideProps() {
         const options2 = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '70d8ea326bmshebaeb2f22378e8dp15e6cajsn5ef1f0fef6f4',
+                'X-RapidAPI-Key': apiKey,
                 'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
             }
         };
@@ -61,7 +62,7 @@ export async function getServerSideProps() {
     const optionsg = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '70d8ea326bmshebaeb2f22378e8dp15e6cajsn5ef1f0fef6f4',
+            'X-RapidAPI-Key': apiKey,
             'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
         }
     };
