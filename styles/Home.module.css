@@ -26,6 +26,10 @@
   padding: 10px 30px;
 }
 
+.bg-primary {
+  background: #40babd !important;
+}
+
 .btn-primary {
   background: #40babd;
   border: 1px solid #40babd;

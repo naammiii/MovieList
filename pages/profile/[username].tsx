@@ -30,8 +30,8 @@ export default function Profile({ users, listname }) {
                                 <div className="card-body">
                                     <h5 className="card-title">User Information</h5>
                                     <div className="card-text">
-                                        <p><strong>Name:</strong> {user.username}</p>
-                                        <p><strong>Password:</strong> Change password</p>
+                                        <p>Name: {user.username}</p>
+                                        <p>Password: Change password</p>
                                     </div>
                                     <hr />
                                 </div>

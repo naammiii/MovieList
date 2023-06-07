@@ -95,7 +95,6 @@ const Signup: React.FC = () => {
                   </div>
                   <div className="form-floating mb-3">
                     <input
-                      autoFocus
                       className="form-control"
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Name"
@@ -106,7 +105,6 @@ const Signup: React.FC = () => {
                   </div>
                   <div className="form-floating mb-3">
                     <input
-                      autoFocus
                       className="form-control"
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
