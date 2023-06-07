@@ -27,12 +27,11 @@ const Header: React.FC = () => {
           <PersonIcon />
         </a>
         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a className="dropdown-item" href="#">Profile</a></li>
-          <li><a className="dropdown-item" href="#">Settings</a></li>
+          <li><a className="dropdown-item" onClick={() => Router.push('/profile/user')} style={{ cursor: 'pointer' }}>Profile</a></li>
           <li>
             <hr className="dropdown-divider"/>
           </li>
-          <li><a className="dropdown-item" href="#"onClick={() => Router.push('/logout')}>Sign out</a></li>
+          <li><a className="dropdown-item" onClick={() => Router.push('/logout')} style={{ cursor: 'pointer' }}>Sign out</a></li>
         </ul>
       </div>
     </div>
@@ -56,8 +55,8 @@ const Header: React.FC = () => {
             <PersonIcon />
           </a>
           <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="#"onClick={() => Router.push('/login')}>Log in</a></li>
-            <li><a className="dropdown-item" href="#"onClick={() => Router.push('/signup')}>Sign up</a></li>
+            <li><a className="dropdown-item" onClick={() => Router.push('/login')} style={{ cursor: 'pointer' }}>Log in</a></li>
+            <li><a className="dropdown-item" onClick={() => Router.push('/signup')} style={{ cursor: 'pointer' }}>Sign up</a></li>
           </ul>
         </div>
       </div>

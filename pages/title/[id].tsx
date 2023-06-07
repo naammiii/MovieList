@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 
 const apiKey = process.env.API_KEY;
 
-const Title = ({titleInfo}) => {
+const Title = ({titleInfo, id}) => {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
 
-  console.log(titleInfo);
+  console.log(id);
 
   return (
   <>
@@ -61,5 +61,5 @@ export async function getServerSideProps(context) {
         const response = await fetch(url, options);
         const result = await response.json();
         const titleInfo = result.results;
-        return { props: { titleInfo } };
+        return { props: { titleInfo, id } };
 }

@@ -18,10 +18,11 @@ export default function Home({ titleInfo, genres }) {
     return (
         <div className={styles.container}>
             <Layout />
-            <div className='d-flex' style={{ marginTop: '80px' }}>
+                <div className='position-absolute'>
                 <Menu genres={genres}/>
-                <h2>Top Movies</h2>
-                <Carousel data={titleInfo} />
+                </div>
+            <div className='' style={{ marginTop: '80px' }}>
+                <Carousel data={titleInfo} title={'Top Movies'} />
             </div>
         </div>
     )

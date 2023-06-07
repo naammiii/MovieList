@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-export default function Carousel({ data }) {
+export default function Carousel({ data, title }) {
   for (let i = 0; i < data.length; i++) {
     const element = data[i];
     if(!element.primaryImage) data[i].primaryImage = {url: '/images/404PosterNotFound.jpg'}
@@ -19,6 +19,7 @@ export default function Carousel({ data }) {
   console.log(data);
   return (
     <>
+    <h1 className="d-block text-center">{title}</h1>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
