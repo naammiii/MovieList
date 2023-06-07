@@ -3,31 +3,35 @@
 import React from 'react';
 import Router from 'next/router';
 
-const List: React.FC = () => {
+
+export default function List({ listname }) {
+    console.log(listname);
     return (
         <>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
-                    <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+                    <button className="nav-link active" id="watching-tab" data-bs-toggle="tab" data-bs-target="#watching-tab-pane" type="button" role="tab" aria-controls="watching-tab-pane" aria-selected="true">{listname[0].name}</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+                    <button className="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-tab-pane" type="button" role="tab" aria-controls="completed-tab-pane" aria-selected="false">{listname[1].name}</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <button className="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                    <button className="nav-link" id="plantowatch-tab" data-bs-toggle="tab" data-bs-target="#plantowatch-tab-pane" type="button" role="tab" aria-controls="plantowatch-tab-pane" aria-selected="false">{listname[2].name}</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <button className="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+                    <button className="nav-link" id="onhold-tab" data-bs-toggle="tab" data-bs-target="#onhold-tab-pane" type="button" role="tab" aria-controls="onhold-tab-pane" aria-selected="false">{listname[3].name}</button>
+                </li>
+                <li className="nav-item" role="presentation">
+                    <button className="nav-link" id="dropped-tab" data-bs-toggle="tab" data-bs-target="#dropped-tab-pane" type="button" role="tab" aria-controls="dropped-tab-pane" aria-selected="false">{listname[4].name}</button>
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabIndex={0}>...</div>
-                <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex={0}>...</div>
-                <div className="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabIndex={0}>...</div>
-                <div className="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabIndex={0}>...</div>
+                <div className="tab-pane fade show active" id="watching-tab-pane" role="tabpanel" aria-labelledby="watching-tab" tabIndex={0}>viendo ahora</div>
+                <div className="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabIndex={0}>terminado</div>
+                <div className="tab-pane fade" id="plantowatch-tab-pane" role="tabpanel" aria-labelledby="plantowatch-tab" tabIndex={0}>planear en ver</div>
+                <div className="tab-pane fade" id="onhold-tab-pane" role="tabpanel" aria-labelledby="onhold-tab" tabIndex={0}>en espera</div>
+                <div className="tab-pane fade" id="dropped-tab-pane" role="tabpanel" aria-labelledby="dropped-tab" tabIndex={0}>abandonado</div>
             </div>
         </>
     );
 }
-
-export default List;
