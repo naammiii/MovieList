@@ -10,7 +10,9 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const userid: number = cookies.get('userid');
 
-export default function Profile({ users, listname, listofuser }) {
+const apiKey = process.env.API_KEY;
+
+export default function Profile({ users, listname, displaylist }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
@@ -19,15 +21,6 @@ export default function Profile({ users, listname, listofuser }) {
     const router = useRouter();
     const { username } = router.query;
     var user = users.find(({ id }) => id == userid);
-
-    var displaylist = [];
-
-    for (let i = 0; i < listofuser.length; i++) {
-        const element = listofuser[i];
-        if(!displaylist[element.categoryId]) displaylist[element.categoryId] = [];
-        displaylist[element.categoryId].push(element);
-    }
-    console.log(displaylist);
 
     if (user && user.username == username) {
         return (
@@ -92,5 +85,29 @@ export const getServerSideProps = async (context) => {
         where: { userId: userp.id },
     })
 
-    return { props: { users, listname, listofuser } };
+    var displaylist = [];
+
+    for (let i = 0; i < listofuser.length; i++) {
+        const element = listofuser[i];
+        if(!displaylist[element.categoryId]) displaylist[element.categoryId] = [];
+
+        const url = 'https://moviesdatabase.p.rapidapi.com/titles/' + element.itemId;
+        const options = {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+          }
+        };
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const titleInfo = result.results;
+
+
+        displaylist[element.categoryId].push(titleInfo);
+    }
+
+    console.log(displaylist);
+
+    return { props: { users, listname, displaylist } };
 };

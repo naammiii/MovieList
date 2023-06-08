@@ -37,27 +37,27 @@ export default function List({ listname, userP }) {
             <div className="tab-content" id="myTabContent">
                 <div className="tab-pane fade show active" id="watching-tab-pane" role="tabpanel" aria-labelledby="watching-tab" tabIndex={0}>
                     {watching ? (userP[listname[0].id].map((entry) => {
-                        return entry.itemId
+                        return entry.titleText.text
                     })) : ('No items found for this list')}
                 </div>
                 <div className="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabIndex={0}>
                 {completed ? (userP[listname[1].id].map((entry) => {
-                        return entry.itemId
+                        return entry.titleText.text
                     })) : ('No items found for this list')}
                 </div>
                 <div className="tab-pane fade" id="plantowatch-tab-pane" role="tabpanel" aria-labelledby="plantowatch-tab" tabIndex={0}>
                 {plantowatch ? (userP[listname[2].id].map((entry) => {
-                        return entry.itemId
+                        return entry.titleText.text
                     })) : ('No items found for this list')}
                 </div>
                 <div className="tab-pane fade" id="onhold-tab-pane" role="tabpanel" aria-labelledby="onhold-tab" tabIndex={0}>
                 {onhold ? (userP[listname[3].id].map((entry) => {
-                        return entry.itemId
+                        return entry.titleText.text
                     })) : ('No items found for this list')}
                 </div>
                 <div className="tab-pane fade" id="dropped-tab-pane" role="tabpanel" aria-labelledby="dropped-tab" tabIndex={0}>
                 {dropped ? (userP[listname[4].id].map((entry) => {
-                        return entry.itemId
+                        return entry.titleText.text
                     })) : ('No items found for this list')}
                 </div>
             </div>
