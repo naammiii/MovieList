@@ -3,9 +3,18 @@
 import React from 'react';
 import Router from 'next/router';
 
+export default function List({ listname, userP }) {
 
-export default function List({ listname }) {
-    console.log(listname);
+    var watching, completed, plantowatch, onhold, dropped = false
+
+    if(userP[1]) watching = true;
+    if(userP[2]) completed = true;
+    if(userP[3]) plantowatch = true;
+    if(userP[4]) onhold = true;
+    if(userP[5]) dropped = true;
+
+    console.log(userP);
+
     return (
         <>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -26,11 +35,31 @@ export default function List({ listname }) {
                 </li>
             </ul>
             <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="watching-tab-pane" role="tabpanel" aria-labelledby="watching-tab" tabIndex={0}>viendo ahora</div>
-                <div className="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabIndex={0}>terminado</div>
-                <div className="tab-pane fade" id="plantowatch-tab-pane" role="tabpanel" aria-labelledby="plantowatch-tab" tabIndex={0}>planear en ver</div>
-                <div className="tab-pane fade" id="onhold-tab-pane" role="tabpanel" aria-labelledby="onhold-tab" tabIndex={0}>en espera</div>
-                <div className="tab-pane fade" id="dropped-tab-pane" role="tabpanel" aria-labelledby="dropped-tab" tabIndex={0}>abandonado</div>
+                <div className="tab-pane fade show active" id="watching-tab-pane" role="tabpanel" aria-labelledby="watching-tab" tabIndex={0}>
+                    {watching ? (userP[listname[0].id].map((entry) => {
+                        return entry.itemId
+                    })) : ('No items found for this list')}
+                </div>
+                <div className="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabIndex={0}>
+                {completed ? (userP[listname[1].id].map((entry) => {
+                        return entry.itemId
+                    })) : ('No items found for this list')}
+                </div>
+                <div className="tab-pane fade" id="plantowatch-tab-pane" role="tabpanel" aria-labelledby="plantowatch-tab" tabIndex={0}>
+                {plantowatch ? (userP[listname[2].id].map((entry) => {
+                        return entry.itemId
+                    })) : ('No items found for this list')}
+                </div>
+                <div className="tab-pane fade" id="onhold-tab-pane" role="tabpanel" aria-labelledby="onhold-tab" tabIndex={0}>
+                {onhold ? (userP[listname[3].id].map((entry) => {
+                        return entry.itemId
+                    })) : ('No items found for this list')}
+                </div>
+                <div className="tab-pane fade" id="dropped-tab-pane" role="tabpanel" aria-labelledby="dropped-tab" tabIndex={0}>
+                {dropped ? (userP[listname[4].id].map((entry) => {
+                        return entry.itemId
+                    })) : ('No items found for this list')}
+                </div>
             </div>
         </>
     );

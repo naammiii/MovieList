@@ -5,11 +5,12 @@ import prisma from '../../../lib/prisma';
 // POST /api/post
 export default async function handle(req, res) {
   const { titleid, userid, categoryid } = req.body;
+
   const result = await prisma.list.create({
     data: {
-      userId: userid,
       itemId: titleid,
-      categoryId: categoryid
+      user: { connect: { id: parseInt(userid)}},
+      category: { connect: { id: parseInt(categoryid) }}
     },
   });
   res.json(result);

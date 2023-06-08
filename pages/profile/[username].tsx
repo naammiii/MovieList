@@ -10,7 +10,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const userid: number = cookies.get('userid');
 
-export default function Profile({ users, listname }) {
+export default function Profile({ users, listname, listofuser }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
@@ -19,6 +19,15 @@ export default function Profile({ users, listname }) {
     const router = useRouter();
     const { username } = router.query;
     var user = users.find(({ id }) => id == userid);
+
+    var displaylist = [];
+
+    for (let i = 0; i < listofuser.length; i++) {
+        const element = listofuser[i];
+        if(!displaylist[element.categoryId]) displaylist[element.categoryId] = [];
+        displaylist[element.categoryId].push(element);
+    }
+    console.log(displaylist);
 
     if (user && user.username == username) {
         return (
@@ -35,7 +44,7 @@ export default function Profile({ users, listname }) {
                                     </div>
                                     <hr />
                                 </div>
-                                <List listname={listname} />
+                                <List listname={listname} userP={displaylist} />
                             </div>
                         </div>
                     </div>
@@ -59,7 +68,7 @@ export default function Profile({ users, listname }) {
                                     <hr />
                                     <p className="text-center">Thank you for visiting!</p>
                                 </div>
-                                <List listname={listname} />
+                                <List listname={listname} userP={displaylist} />
                             </div>
                         </div>
                     </div>
@@ -69,10 +78,19 @@ export default function Profile({ users, listname }) {
     }
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
     const users = await prisma.user.findMany();
 
     const listname = await prisma.category.findMany();
 
-    return { props: { users, listname } };
+    const { username } = context.query;
+    const userp = await prisma.user.findUnique({
+        where: { username: username }
+    })
+
+    const listofuser = await prisma.list.findMany({
+        where: { userId: userp.id },
+    })
+
+    return { props: { users, listname, listofuser } };
 };
