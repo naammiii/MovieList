@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <nav className="navbar fixed-top navbar-light bg-light">
     <div className="container-fluid d-flex">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand"onClick={() => Router.push('/home')} style={{ cursor: 'pointer' }}>
         <img src='/images/logo.svg' alt="Logo" width="35" height="35"/>
       </a>
 

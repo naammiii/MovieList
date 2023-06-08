@@ -6,6 +6,10 @@ import Router from 'next/router';
 import { useEffect } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
+import {
+  Button,
+  Modal
+} from "reactstrap";
 
 const Signup: React.FC = () => {
 
@@ -13,8 +17,16 @@ const Signup: React.FC = () => {
     import('bootstrap/dist/js/bootstrap');
   }, []);
 
+  const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
+    false
+  );
+
+  const [modalUsernameOpen, setModalUsernameOpen] = React.useState(
+    false
+  );
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordc, setPasswordc] = useState('');
   const [name, setName] = useState('');
 
   async function getUsers() {
@@ -31,17 +43,25 @@ const Signup: React.FC = () => {
       console.error(error);
     }
   }
-  const verification = async (usernamev, passwordv) => {
-    const users = await getUsers()
-    .then(data => {
-      if(data.find(({ username }) => username === usernamev)) return true;
-      else return false;
-    });
+  const verification = async (usernamev, passwordv, passwordcv) => {
+    if(passwordv == passwordcv) {
+      await getUsers()
+      .then(data => {
+        if(data.find(({ username }) => username === usernamev)){
+          setModalUsernameOpen(true);
+          return false;
+        }
+        else return true;
+      });
+    }else{
+      setModalNotificationOpen(true);
+      return false;
+    }
   }
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if(verification(username, password)){
+    if(await verification(username, password, passwordc)){
       try {
         const body = { username, password, name };
         await fetch('/api/post/createUser', {
@@ -54,7 +74,7 @@ const Signup: React.FC = () => {
         console.error(error);
       }
     }else{
-      Router.push('/error');
+      console.log('error in form submission');
     }
   };
 
@@ -114,7 +134,18 @@ const Signup: React.FC = () => {
                     <label htmlFor="floatingPassword">Password</label>
 
                   </div>
-                  <input disabled={!password || !username || !name} type="submit" value="Create" className="btn btn-primary btn-login text-uppercase fw-bold" />
+                  <div className="form-floating mb-3">
+                    <input
+                      className="form-control"
+                      onChange={(e) => setPasswordc(e.target.value)}
+                      placeholder="Confirm Password"
+                      type="password"
+                      value={passwordc}
+                    />
+                    <label htmlFor="floatingPassword">Confirm Password</label>
+
+                  </div>
+                  <input disabled={!password || !username || !name || !passwordc} type="submit" value="Create" className="btn btn-primary btn-login text-uppercase fw-bold" />
                   <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{cursor: 'pointer'}} onClick={() => Router.push('/login')}>
                     Already have an acount?
                   </a>
@@ -124,6 +155,90 @@ const Signup: React.FC = () => {
           </div>
         </div>
       </div>
+      <Modal
+            isOpen={modalNotificationOpen}
+            className="modal-danger"
+            contentClassName="bg-gradient-danger"
+            onClick={() => setModalNotificationOpen(false)}
+          >
+            <div className=" modal-header">
+              <h6 className=" modal-title" id="modal-title-notification">
+                Error in the form
+              </h6>
+              <button
+                aria-label="Close"
+                className=" close"
+                onClick={() => setModalNotificationOpen(false)}
+                type="button"
+              >
+                <span aria-hidden={true}>×</span>
+              </button>
+            </div>
+            <div className=" modal-body">
+              <div className=" py-3 text-center">
+                <i className=" ni ni-bell-55 ni-3x"></i>
+                <h4 className=" heading mt-4">Error creating the user</h4>
+                <p>
+                  The password do not match
+                </p>
+              </div>
+            </div>
+            <div className=" modal-footer">
+              <Button className=" btn-white" color="default" type="button">
+                Ok, Got it
+              </Button>
+              <Button
+                className=" text-white ml-auto"
+                color="link"
+                onClick={() => setModalNotificationOpen(false)}
+                type="button"
+              >
+                Close
+              </Button>
+            </div>
+          </Modal>
+          <Modal
+            isOpen={modalUsernameOpen}
+            className="modal-danger"
+            contentClassName="bg-gradient-danger"
+            onClick={() => setModalUsernameOpen(false)}
+          >
+            <div className=" modal-header">
+              <h6 className=" modal-title" id="modal-title-notification">
+                Error in the form
+              </h6>
+              <button
+                aria-label="Close"
+                className=" close"
+                onClick={() => setModalUsernameOpen(false)}
+                type="button"
+              >
+                <span aria-hidden={true}>×</span>
+              </button>
+            </div>
+            <div className=" modal-body">
+              <div className=" py-3 text-center">
+                <i className=" ni ni-bell-55 ni-3x"></i>
+                <h4 className=" heading mt-4">Error creating the user</h4>
+                <p>
+                  That username is already in use. Choose other.
+                </p>
+              </div>
+            </div>
+            <div className=" modal-footer">
+              <Button className=" btn-white" color="default" type="button">
+                Ok, Got it
+              </Button>
+              <Button
+                className=" text-white ml-auto"
+                color="link"
+                onClick={() => setModalNotificationOpen(false)}
+                type="button"
+              >
+                Close
+              </Button>
+            </div>
+          </Modal>
       <style jsx>{`
         .page {
           background: var(--geist-background);

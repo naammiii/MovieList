@@ -7,7 +7,10 @@ import { useEffect } from 'react';
 import Cookies from 'universal-cookie';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import {
+  Button,
+  Modal
+} from "reactstrap";
 const cookies = new Cookies();
 const userid = cookies.get('userid');
 
@@ -16,6 +19,10 @@ export default function Login ()
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
+
+    const [modalNotificationOpen, setModalNotificationOpen] = React.useState(
+        false
+    );
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -92,7 +99,7 @@ export default function Login ()
                 if(data) {
                     Router.push('/home');
                 }else{
-                    //username or password is incorrect
+                    setModalNotificationOpen(true)
                 }
             });
         };
@@ -153,6 +160,48 @@ export default function Login ()
                         </div>
                     </div>
                 </div>
+                <Modal
+            isOpen={modalNotificationOpen}
+            className="modal-danger"
+            contentClassName="bg-gradient-danger"
+            onClick={() => setModalNotificationOpen(false)}
+          >
+            <div className=" modal-header">
+              <h6 className=" modal-title" id="modal-title-notification">
+                Error in the form
+              </h6>
+              <button
+                aria-label="Close"
+                className=" close"
+                onClick={() => setModalNotificationOpen(false)}
+                type="button"
+              >
+                <span aria-hidden={true}>×</span>
+              </button>
+            </div>
+            <div className=" modal-body">
+              <div className=" py-3 text-center">
+                <i className=" ni ni-bell-55 ni-3x"></i>
+                <h4 className=" heading mt-4">Error creating the user</h4>
+                <p>
+                  Username or password is incorrect.
+                </p>
+              </div>
+            </div>
+            <div className=" modal-footer">
+              <Button className=" btn-white" color="default" type="button">
+                Ok, Got it
+              </Button>
+              <Button
+                className=" text-white ml-auto"
+                color="link"
+                onClick={() => setModalNotificationOpen(false)}
+                type="button"
+              >
+                Close
+              </Button>
+            </div>
+          </Modal>
                 <style jsx>{`
             .page {
               background: var(--geist-background);
