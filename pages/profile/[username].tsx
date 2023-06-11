@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 import List from '../../components/List';
 import { useRouter } from "next/router";
 import prisma from '../../lib/prisma';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+import Router from 'next/router';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -12,7 +14,7 @@ const userid: number = cookies.get('userid');
 
 const apiKey = process.env.API_KEY;
 
-export default function Profile({ users, listname, displaylist }) {
+export default function Profile({ users, listname, displaylist, userp }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
@@ -22,6 +24,9 @@ export default function Profile({ users, listname, displaylist }) {
     const { username } = router.query;
     var user = users.find(({ id }) => id == userid);
 
+    console.log('aaa');
+    console.log(userp);
+
     if (user && user.username == username) {
         return (
             <>
@@ -30,9 +35,12 @@ export default function Profile({ users, listname, displaylist }) {
                         <div className="col-md-6 offset-md-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title">User Information</h5>
+
+                                    <a  style={{cursor: 'pointer'}} onClick={() => Router.back()}><ArrowBackIcon /></a>
+                                    <h5 className="card-title">Welcome @{userp.username}</h5>
                                     <div className="card-text">
-                                        <p>Name: {user.username}</p>
+
+                                        <p>Name: {userp.name}</p>
                                         <p>Password: Change password</p>
                                     </div>
                                     <hr />
@@ -54,12 +62,12 @@ export default function Profile({ users, listname, displaylist }) {
                         <div className="col-md-6 offset-md-3">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title">User Information</h5>
+                                    <a  style={{cursor: 'pointer'}} onClick={() => Router.back()}><ArrowBackIcon /></a>
+                                    <h5 className="card-title">@{userp.username}'s profile. </h5>
                                     <div className="card-text">
-                                        <p><strong>Name:</strong> username</p>
+                                        
+                                        <p>Name: {userp.name}</p>
                                     </div>
-                                    <hr />
-                                    <p className="text-center">Thank you for visiting!</p>
                                 </div>
                                 <List listname={listname} userP={displaylist} />
                             </div>
@@ -109,5 +117,5 @@ export const getServerSideProps = async (context) => {
 
     console.log(displaylist);
 
-    return { props: { users, listname, displaylist } };
+    return { props: { users, listname, displaylist, userp } };
 };

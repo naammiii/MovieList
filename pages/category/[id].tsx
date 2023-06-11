@@ -55,7 +55,7 @@ export default Category
 
 export async function getServerSideProps(context) {
     const { id } = context.query;
-    const url = 'https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=' + id.toLowerCase() + '&limit=33';
+    const url = 'https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=' + id.toLowerCase() + '&limit=21';
         const options = {
             method: 'GET',
             headers: {

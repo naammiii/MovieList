@@ -47,7 +47,7 @@ const Signup: React.FC = () => {
     if(passwordv == passwordcv) {
       await getUsers()
       .then(data => {
-        if(data.find(({ username }) => username === usernamev)){
+        if(data.find(({ username }) => username == usernamev)){
           setModalUsernameOpen(true);
           return false;
         }
@@ -61,7 +61,9 @@ const Signup: React.FC = () => {
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if(await verification(username, password, passwordc)){
+    const bool = verification(username, password, passwordc);
+    console.log(bool);
+    if(bool){
       try {
         const body = { username, password, name };
         await fetch('/api/post/createUser', {
