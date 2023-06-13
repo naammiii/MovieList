@@ -58,7 +58,7 @@ export default function List({ listname, userP }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.titleText.text}</p>
+                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -98,7 +98,7 @@ export default function List({ listname, userP }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.titleText.text}</p>
+                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -137,7 +137,7 @@ export default function List({ listname, userP }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.titleText.text}</p>
+                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -175,7 +175,7 @@ export default function List({ listname, userP }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.titleText.text}</p>
+                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -214,7 +214,7 @@ export default function List({ listname, userP }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.titleText.text}</p>
+                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
                                                     </div>
                                                 </div>
                                             </td>

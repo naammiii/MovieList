@@ -11,14 +11,13 @@ const Layout = dynamic(() => import('../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-export default function Home({ titleInfo, titleTVInfo, genres }) {
+export default function Home({ titleInfo, titleTVInfo, genres, code, result }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
 
-    console.log(titleInfo);
-    console.log(titleTVInfo);
+    console.log(result);
 
     return (
         <div className={styles.container}>
@@ -121,5 +120,5 @@ export async function getServerSideProps({req, res}) {
     genres = genres.results;
     genres.splice(0, 1);
 
-    return { props: { titleInfo, titleTVInfo, genres } };
+    return { props: { titleInfo, titleTVInfo, genres, code, result } };
 }

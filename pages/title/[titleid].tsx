@@ -6,6 +6,7 @@ import prisma from '../../lib/prisma';
 import 'bootstrap/dist/css/bootstrap.css';
 import styles from '../../styles/Home.module.css';
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic'
 import {
   Button,
   Card,
@@ -21,9 +22,13 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const userid: number = cookies.get('userid');
 
+
+const Menu = dynamic(() => import('../../components/Menu'))
+const Layout = dynamic(() => import('../../components/Layout'))
+
 const apiKey = process.env.API_KEY;
 
-const Title = ({ titleInfo, titleid, listname }) => {
+const Title = ({ titleInfo, titleid, listname, cast, genres }) => {
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap');
@@ -31,7 +36,11 @@ const Title = ({ titleInfo, titleid, listname }) => {
   const [modalFormOpen, setModalFormOpen] = React.useState(false);
   const [list, setList] = useState('');
 
-  console.log(titleInfo)
+  if (!titleInfo.primaryImage) titleInfo.primaryImage = { url: '/images/404PosterNotFound.jpg' }
+  if (!titleInfo.releaseYear) titleInfo.releaseYear = { year: 'unknown' }
+
+  console.log(cast);
+
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -53,17 +62,34 @@ const Title = ({ titleInfo, titleid, listname }) => {
   if (userid == undefined) {
     return (
       <>
-        <div className="container">
-          <div className="card mt-5 ">
-            <div className="card-body d-flex">
-              <Image src={titleInfo.primaryImage.url} alt={titleInfo.titleText.text} height={300} width={200} className='m-5'/>
-              <div className='m-5'>
-                <h5 className="card-title">{titleInfo.titleText.text}</h5>
-                <p className="card-text">Descripción de la película.</p>
-                <p className="card-text"><strong>Género:</strong> Acción</p>
-                <p className="card-text"><strong>Año:</strong> {titleInfo.releaseYear.year}</p>
-                <p className="card-text"><strong>Director:</strong> Nombre del director</p>
-                <p className="card-text"><strong>Actores:</strong> Nombre del actor 1, Nombre del actor 2</p>
+        <Layout />
+        <div className='position-absolute'>
+          <Menu genres={genres} />
+        </div>
+        <div className='' style={{ marginTop: '80px' }}>
+          <div className="container">
+            <div className="card mt-5 ">
+              <div className="card-body d-flex">
+                <Image src={titleInfo.primaryImage.url} alt={titleInfo.originalTitleText.text} height={300} width={200} className='m-5' />
+                <div className='m-5'>
+                  <h5 className="card-title">{titleInfo.originalTitleText.text}</h5>
+                  <p className="card-text">{titleInfo.plot.plotText.plainText}</p>
+                  <p className="card-text"><strong>Genres:</strong> &nbsp; &nbsp;
+                    {titleInfo.genres.genres.map((genre) => {
+                      return (
+                        <a onClick={() => Router.push('/category/' + genre.text)} style={{ cursor: 'pointer' }} className="link-dark d-inline-flex text-decoration-none rounded">{genre.text}&nbsp; &nbsp; </a>
+                      )
+                    })}
+                  </p>
+                  <p className="card-text"><strong>Relase Year:</strong> {titleInfo.releaseYear.year}</p>
+                  <div className="card-text"><strong>Cast:</strong> &nbsp; &nbsp;
+                    {cast.map((actor) => {
+                      return (
+                        <p><u>{actor.node.name.nameText.text}</u> as <u>{actor.node.characters[0].name}</u> &nbsp; &nbsp; </p>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -142,7 +168,7 @@ export default Title
 
 export async function getServerSideProps(context) {
   const { titleid } = context.query
-  const url = 'https://moviesdatabase.p.rapidapi.com/titles/' + titleid;
+  const url = 'https://moviesdatabase.p.rapidapi.com/titles/' + titleid + '?info=base_info';
   const options = {
     method: 'GET',
     headers: {
@@ -156,5 +182,33 @@ export async function getServerSideProps(context) {
 
   const listname = await prisma.category.findMany();
 
-  return { props: { titleInfo, titleid, listname } };
+  const urlcast = 'https://moviesdatabase.p.rapidapi.com/titles/' + titleid + '?info=extendedCast';
+  const optionscast = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    }
+  };
+  const responsecast = await fetch(urlcast, optionscast);
+  const resultcast = await responsecast.json();
+
+  const cast = resultcast.results.cast.edges;
+
+  const urlg = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
+  const optionsg = {
+      method: 'GET',
+      headers: {
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+      }
+  };
+
+  const responseg = await fetch(urlg, optionsg);
+  let genres = await responseg.json();
+  genres = genres.results;
+  genres.splice(0, 1);
+
+
+  return { props: { titleInfo, titleid, listname, cast, genres } };
 }
