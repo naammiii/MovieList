@@ -4,7 +4,7 @@ import React from 'react';
 import Router from 'next/router';
 import Image from "next/image";
 
-export default function List({ listname, userP }) {
+export default function List({ listname, userP, isUser }) {
 
     var watching, completed, plantowatch, onhold, dropped = false
 
@@ -45,7 +45,7 @@ export default function List({ listname, userP }) {
                         <thead className="bg-light">
                             <tr>
                                 <th>Name</th>
-                                <th>Actions</th>
+                                {isUser ? <th>Actions</th> : null}
                             </tr>
                         </thead>
                         {watching ? (userP[listname[0].id].map((entry) => {
@@ -62,6 +62,7 @@ export default function List({ listname, userP }) {
                                                     </div>
                                                 </div>
                                             </td>
+                                            {isUser ? 
                                             <td>
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Edit
@@ -69,7 +70,7 @@ export default function List({ listname, userP }) {
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Delete
                                                 </button>
-                                            </td>
+                                            </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -85,7 +86,7 @@ export default function List({ listname, userP }) {
                         <thead className="bg-light">
                             <tr>
                                 <th>Name</th>
-                                <th>Actions</th>
+                                {isUser ? <th>Actions</th> : null}
                             </tr>
                         </thead>
                         {completed ? (userP[listname[1].id].map((entry) => {
@@ -102,6 +103,7 @@ export default function List({ listname, userP }) {
                                                     </div>
                                                 </div>
                                             </td>
+                                            {isUser ? 
                                             <td>
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Edit
@@ -109,7 +111,7 @@ export default function List({ listname, userP }) {
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Delete
                                                 </button>
-                                            </td>
+                                            </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -124,7 +126,7 @@ export default function List({ listname, userP }) {
                         <thead className="bg-light">
                             <tr>
                                 <th>Name</th>
-                                <th>Actions</th>
+                                {isUser ? <th>Actions</th> : null}
                             </tr>
                         </thead>
                         {plantowatch ? (userP[listname[2].id].map((entry) => {
@@ -141,6 +143,7 @@ export default function List({ listname, userP }) {
                                                     </div>
                                                 </div>
                                             </td>
+                                            {isUser ? 
                                             <td>
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Edit
@@ -148,7 +151,7 @@ export default function List({ listname, userP }) {
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Delete
                                                 </button>
-                                            </td>
+                                            </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -162,7 +165,7 @@ export default function List({ listname, userP }) {
                         <thead className="bg-light">
                             <tr>
                                 <th>Name</th>
-                                <th>Actions</th>
+                                {isUser ? <th>Actions</th> : null}
                             </tr>
                         </thead>
                         {onhold ? (userP[listname[3].id].map((entry) => {
@@ -179,6 +182,7 @@ export default function List({ listname, userP }) {
                                                     </div>
                                                 </div>
                                             </td>
+                                            {isUser ? 
                                             <td>
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Edit
@@ -186,7 +190,7 @@ export default function List({ listname, userP }) {
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Delete
                                                 </button>
-                                            </td>
+                                            </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -201,7 +205,7 @@ export default function List({ listname, userP }) {
                         <thead className="bg-light">
                             <tr>
                                 <th>Name</th>
-                                <th>Actions</th>
+                                {isUser ? <th>Actions</th> : null}
                             </tr>
                         </thead>
                         {dropped ? (userP[listname[4].id].map((entry) => {
@@ -218,6 +222,7 @@ export default function List({ listname, userP }) {
                                                     </div>
                                                 </div>
                                             </td>
+                                            {isUser ? 
                                             <td>
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Edit
@@ -225,7 +230,7 @@ export default function List({ listname, userP }) {
                                                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                                                     Delete
                                                 </button>
-                                            </td>
+                                            </td> : null}
                                         </tr>
 
                                     </tbody>

@@ -23,11 +23,14 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
         import('bootstrap/dist/js/bootstrap');
     }, []);
 
+
     const router = useRouter();
     const { username } = router.query;
     var user = users.find(({ id }) => id == userid);
+    var isUser = false;
+    if(user && user.username == username) isUser = true;
 
-    if (user && user.username == username) {
+    if (isUser) {
         return (
             <>
                 <div className="container">
@@ -45,11 +48,11 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                     </div>
                                     <hr />
                                 </div>
-                                <List listname={listname} userP={displaylist} />
+                                <List listname={listname} userP={displaylist} isUser={isUser}/>
                             </div>
                         </div>
                     </div>
-                        {recomendation ? <Carousel data={recomendation} title={'Because you watched ' + recMovName}/> : null}
+                        {recomendation.length != 0 ? <Carousel data={recomendation} title={'Because you watched ' + recMovName}/> : null}
                 </div>
 
             </>
@@ -70,7 +73,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                         <p>Name: {userp.name}</p>
                                     </div>
                                 </div>
-                                <List listname={listname} userP={displaylist} />
+                                <List listname={listname} userP={displaylist} isUser={isUser} />
                             </div>
                         </div>
                     </div>
@@ -117,14 +120,14 @@ export const getServerSideProps = async (context) => {
     }
 
     let recomendation = [];
-    let recMovName;
+    let recMovName = '';
     let test;
 
-    if (displaylist[2]) {
+    if (displaylist[2] != null ) {
 
         const movcomp = displaylist[2].length;
         const index = Math.floor(Math.random() * movcomp);
-        
+
         const recMov = displaylist[2][index];
         const recGen = recMov.genres.genres[0].text;
         recMovName = recMov.originalTitleText.text;
