@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import dynamic from 'next/dynamic'
+import { title } from 'process';
 
 const Carousel = dynamic(() => import('../components/Carousel'))
 const Menu = dynamic(() => import('../components/Menu'))
@@ -15,6 +16,9 @@ export default function Home({ titleInfo, titleTVInfo, genres }) {
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
+
+    console.log(titleInfo);
+    console.log(titleTVInfo);
 
     return (
         <div className={styles.container}>
@@ -52,22 +56,22 @@ export async function getServerSideProps({req, res}) {
         result[index] = element.substring(7, 16);
     });
 
-    var titleInfo = [];
-
+    var titleInfo = []; 
+    var code = '';
     for (let i = 0; i < 9; i++) {
-        const code = result[i];
-        const url2 = 'https://moviesdatabase.p.rapidapi.com/titles/' + code;
-        const options2 = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': apiKey,
-                'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-            }
-        };
-        const response2 = await fetch(url2, options2);
-        const result2 = await response2.json();
-        titleInfo[i] = result2.results;
+        code = code + result[i] + '%2C';
     }
+    const url2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
+    const options2 = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+        }
+    };
+    const response2 = await fetch(url2, options2);
+    const result2 = await response2.json();
+    titleInfo = result2.results;
 
 
     const urltv = 'https://imdb8.p.rapidapi.com/title/get-most-popular-tv-shows?homeCountry=ES&purchaseCountry=ES&currentCountry=ES';
@@ -87,21 +91,21 @@ export async function getServerSideProps({req, res}) {
 
 
     var titleTVInfo = [];
-
+    var code = '';
     for (let i = 0; i < 9; i++) {
-        const code = resulttv[i];
-        const url2 = 'https://moviesdatabase.p.rapidapi.com/titles/' + code;
-        const options2 = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': apiKey,
-                'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-            }
-        };
-        const response2 = await fetch(url2, options2);
-        const result2 = await response2.json();
-        titleTVInfo[i] = result2.results;
+        code = code + resulttv[i] + '%2C';
     }
+    const urltv2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
+    const optionstv2 = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+        }
+    };
+    const responsetv2 = await fetch(urltv2, optionstv2);
+    const resulttv2 = await responsetv2.json();
+    titleTVInfo = resulttv2.results;
 
     const urlg = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
     const optionsg = {
