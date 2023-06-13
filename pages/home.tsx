@@ -1,10 +1,12 @@
-import Layout from '../components/Layout';
-import Menu from '../components/Menu';
-import Carousel from '../components/Carousel';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import dynamic from 'next/dynamic'
+
+const Carousel = dynamic(() => import('../components/Carousel'))
+const Menu = dynamic(() => import('../components/Menu'))
+const Layout = dynamic(() => import('../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
