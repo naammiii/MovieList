@@ -15,6 +15,8 @@ const Category = ({ categoryTitle, genres }) => {
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
+    console.log('aaaaa');
+    console.log(categoryTitle);
 
     for (let i = 0; i < categoryTitle.length; i++) {
         const element = categoryTitle[i];
@@ -70,33 +72,37 @@ export async function getServerSideProps(context) {
         result[index] = element.substring(7, 16);
     });
 
-    var categoryTitle = [];
+    var code = '';
 
-    for (let i = 0; i < 33; i++) {
-        const code = result[i];
-        const url2 = 'https://moviesdatabase.p.rapidapi.com/titles/' + code;
-        const options2 = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': apiKey,
-                'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-            }
-        };
-        const response2 = await fetch(url2, options2);
-        const result2 = await response2.json();
-        categoryTitle[i] = result2.results;
+    for (let i = 0; i < 21; i++) {
+        code = code + result[i] + '%2C';
     }
-    const urlg = 'https://imdb8.p.rapidapi.com/title/list-popular-genres';
+    
+    const urltv2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
+    const optionstv2 = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+        }
+    };
+    const responsetv2 = await fetch(urltv2, optionstv2);
+    const resulttv2 = await responsetv2.json();
+    const categoryTitle = resulttv2.results;
+
+    const urlg = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
     const optionsg = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': apiKey,
-            'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+            'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
         }
     };
 
     const responseg = await fetch(urlg, optionsg);
-    const genres = await responseg.json();
+    let genres = await responseg.json();
+    genres = genres.results;
+    genres.splice(0, 1);
 
     return { props: { categoryTitle, genres } };
 }
