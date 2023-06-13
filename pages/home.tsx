@@ -29,7 +29,12 @@ export default function Home({ titleInfo, titleTVInfo, genres }) {
 
     )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps({req, res}) {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+      )
+
     const url = 'https://imdb8.p.rapidapi.com/title/get-most-popular-movies?homeCountry=ES&purchaseCountry=ES&currentCountry=ES';
     const options = {
         method: 'GET',

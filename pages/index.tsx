@@ -17,7 +17,6 @@ function Home() {
                 <title>MovieList</title>
                 <link rel="icon" href="styles/images/logo.svg" />
                 <link id="theme-style" rel="stylesheet" href="/css/home.css"></link> 
-                <link rel="preload" href="home.tsx" as="script" />
             </Head>
 
             <header id="header" className={styles.header}>
