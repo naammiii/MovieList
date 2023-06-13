@@ -16,7 +16,7 @@ export default function Carousel({ data, title }) {
     const element = data[i];
     if(!element.primaryImage) data[i].primaryImage = {url: '/images/404PosterNotFound.jpg'}
   }
-  console.log(data);
+  
   return (
     <>
     <h1 className="d-block text-center">{title}</h1>

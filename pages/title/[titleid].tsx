@@ -1,5 +1,6 @@
 
 import Router from 'next/router';
+import Image from "next/image";
 import React, { useState } from "react";
 import prisma from '../../lib/prisma';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,13 +31,13 @@ const Title = ({ titleInfo, titleid, listname }) => {
   const [modalFormOpen, setModalFormOpen] = React.useState(false);
   const [list, setList] = useState('');
 
+  console.log(titleInfo)
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(list);
     const categoryid = list;
     const body = { titleid, userid, categoryid };
-    try{
+    try {
       await fetch('/api/post/addListItem', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +45,7 @@ const Title = ({ titleInfo, titleid, listname }) => {
       });
       console.log('todo bien creo');
 
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -52,30 +53,18 @@ const Title = ({ titleInfo, titleid, listname }) => {
   if (userid == undefined) {
     return (
       <>
-        <div className={styles.container}>
-          <h1>Información de la película</h1>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Título de la película</h5>
-              <p className="card-text" id="titulo">{titleInfo.titleText.text}</p>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Género</h5>
-              <p className="card-text" id="genero"></p>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Sinopsis</h5>
-              <p className="card-text" id="sinopsis"></p>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Año de lanzamiento</h5>
-              <p className="card-text" id="lanzamiento"></p>
+        <div className="container">
+          <div className="card mt-5 ">
+            <div className="card-body d-flex">
+              <Image src={titleInfo.primaryImage.url} alt={titleInfo.titleText.text} height={300} width={200} className='m-5'/>
+              <div className='m-5'>
+                <h5 className="card-title">{titleInfo.titleText.text}</h5>
+                <p className="card-text">Descripción de la película.</p>
+                <p className="card-text"><strong>Género:</strong> Acción</p>
+                <p className="card-text"><strong>Año:</strong> {titleInfo.releaseYear.year}</p>
+                <p className="card-text"><strong>Director:</strong> Nombre del director</p>
+                <p className="card-text"><strong>Actores:</strong> Nombre del actor 1, Nombre del actor 2</p>
+              </div>
             </div>
           </div>
         </div>
