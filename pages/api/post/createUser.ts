@@ -1,11 +1,8 @@
-// pages/api/post/index.ts
-
 import prisma from '../../../lib/prisma';
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// POST /api/post
 export default async function handle(req, res) {
   const { username, password, name } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);

@@ -14,12 +14,12 @@ const Layout = dynamic(() => import('../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-export default function Home({ titleInfo, titleTVInfo, genres, userp }) {
+export default function Home({ titleInfo, titleTVInfo, genres, userp, code }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
-
+    console.log(code);
     return (
         <div className={styles.container}>
             <Layout username={userp.username} />
@@ -29,23 +29,24 @@ export default function Home({ titleInfo, titleTVInfo, genres, userp }) {
             <div className='' style={{ marginTop: '80px' }}>
                 <Carousel data={titleInfo} title={'Top Movies'} />
                 <br />
+                <br />
                 <Carousel data={titleTVInfo} title={'Top TV Series'} />
             </div>
         </div>
 
     )
 }
-export async function getServerSideProps({req, res}, context) {
+export async function getServerSideProps({ req, res }, context) {
     res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
-      )
+    )
 
-      
-        const cookies = new Cookies(req.headers.cookie);
-      const userid = parseInt(cookies.get('userid')) ;
 
-    const userp =  userid ? await prisma.user.findUnique({
+    const cookies = new Cookies(req.headers.cookie);
+    const userid = parseInt(cookies.get('userid'));
+
+    const userp = userid ? await prisma.user.findUnique({
         where: { id: userid }
     }) : '';
 
@@ -64,11 +65,11 @@ export async function getServerSideProps({req, res}, context) {
         result[index] = element.substring(7, 16);
     });
 
-    var titleInfo = []; 
-    var code = '';
-    for (let i = 0; i < 9; i++) {
-        code = code + result[i] + '%2C';
-    }
+    var titleInfo = [];
+    var code = String(result.slice(0, 9));
+    // for (let i = 0; i < 9; i++) {
+    //     code = code + result[i] + '%2C';
+    // }
     const url2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
     const options2 = {
         method: 'GET',
@@ -99,10 +100,10 @@ export async function getServerSideProps({req, res}, context) {
 
 
     var titleTVInfo = [];
-    var code = '';
-    for (let i = 0; i < 9; i++) {
-        code = code + resulttv[i] + '%2C';
-    }
+    var code = String(resulttv.slice(0, 9));
+    // for (let i = 0; i < 9; i++) {
+    //     code = code + resulttv[i] + '%2C';
+    // }
     const urltv2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
     const optionstv2 = {
         method: 'GET',
@@ -131,5 +132,5 @@ export async function getServerSideProps({req, res}, context) {
 
 
 
-    return { props: { titleInfo, titleTVInfo, genres, userp } };
+    return { props: { titleInfo, titleTVInfo, genres, userp, code } };
 }

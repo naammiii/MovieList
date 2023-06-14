@@ -44,16 +44,16 @@ const Signup: React.FC = () => {
     }
   }
   const verification = async (usernamev, passwordv, passwordcv) => {
-    if(passwordv == passwordcv) {
+    if (passwordv == passwordcv) {
       await getUsers()
-      .then(data => {
-        if(data.find(({ username }) => username == usernamev)){
-          setModalUsernameOpen(true);
-          return false;
-        }
-        else return true;
-      });
-    }else{
+        .then(data => {
+          if (data.find(({ username }) => username == usernamev)) {
+            setModalUsernameOpen(true);
+            return false;
+          }
+          else return true;
+        });
+    } else {
       setModalNotificationOpen(true);
       return false;
     }
@@ -63,7 +63,7 @@ const Signup: React.FC = () => {
     e.preventDefault();
     const bool = verification(username, password, passwordc);
     console.log(bool);
-    if(bool){
+    if (bool) {
       try {
         const body = { username, password, name };
         await fetch('/api/post/createUser', {
@@ -75,7 +75,7 @@ const Signup: React.FC = () => {
       } catch (error) {
         console.error(error);
       }
-    }else{
+    } else {
       console.log('error in form submission');
     }
   };
@@ -94,7 +94,7 @@ const Signup: React.FC = () => {
             <div className="card border-0 shadow rounded-3 my-5">
               <div className="card-body p-4 p-sm-5">
                 <div className="d-flex justify-content-between">
-                  <a  style={{cursor: 'pointer'}} onClick={() => Router.back()}><span className="text-muted"><ArrowBackIcon /></span></a>
+                  <a style={{ cursor: 'pointer' }} onClick={() => Router.back()}><span className="text-muted"><ArrowBackIcon /></span></a>
                   <h5
                     className="card-title text-center mb-5 fw-light
                                     fs-5">
@@ -148,7 +148,7 @@ const Signup: React.FC = () => {
 
                   </div>
                   <input disabled={!password || !username || !name || !passwordc} type="submit" value="Create" className="btn btn-primary btn-login text-uppercase fw-bold" />
-                  <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{cursor: 'pointer'}} onClick={() => Router.push('/login')}>
+                  <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{ cursor: 'pointer' }} onClick={() => Router.push('/login')}>
                     Already have an acount?
                   </a>
                 </form>
@@ -158,89 +158,89 @@ const Signup: React.FC = () => {
         </div>
       </div>
       <Modal
-            isOpen={modalNotificationOpen}
-            className="modal-danger"
-            contentClassName="bg-gradient-danger"
+        isOpen={modalNotificationOpen}
+        className="modal-danger"
+        contentClassName="bg-gradient-danger"
+        onClick={() => setModalNotificationOpen(false)}
+      >
+        <div className=" modal-header">
+          <h6 className=" modal-title" id="modal-title-notification">
+            Error in the form
+          </h6>
+          <button
+            aria-label="Close"
+            className=" close"
             onClick={() => setModalNotificationOpen(false)}
+            type="button"
           >
-            <div className=" modal-header">
-              <h6 className=" modal-title" id="modal-title-notification">
-                Error in the form
-              </h6>
-              <button
-                aria-label="Close"
-                className=" close"
-                onClick={() => setModalNotificationOpen(false)}
-                type="button"
-              >
-                <span aria-hidden={true}>×</span>
-              </button>
-            </div>
-            <div className=" modal-body">
-              <div className=" py-3 text-center">
-                <i className=" ni ni-bell-55 ni-3x"></i>
-                <h4 className=" heading mt-4">Error creating the user</h4>
-                <p>
-                  The password do not match
-                </p>
-              </div>
-            </div>
-            <div className=" modal-footer">
-              <Button className=" btn-white" color="default" type="button">
-                Ok, Got it
-              </Button>
-              <Button
-                className=" text-white ml-auto"
-                color="link"
-                onClick={() => setModalNotificationOpen(false)}
-                type="button"
-              >
-                Close
-              </Button>
-            </div>
-          </Modal>
-          <Modal
-            isOpen={modalUsernameOpen}
-            className="modal-danger"
-            contentClassName="bg-gradient-danger"
+            <span aria-hidden={true}>×</span>
+          </button>
+        </div>
+        <div className=" modal-body">
+          <div className=" py-3 text-center">
+            <i className=" ni ni-bell-55 ni-3x"></i>
+            <h4 className=" heading mt-4">Error creating the user</h4>
+            <p>
+              The password do not match
+            </p>
+          </div>
+        </div>
+        <div className=" modal-footer">
+          <Button className=" btn-white" color="default" type="button">
+            Ok, Got it
+          </Button>
+          <Button
+            className=" text-white ml-auto"
+            color="link"
+            onClick={() => setModalNotificationOpen(false)}
+            type="button"
+          >
+            Close
+          </Button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalUsernameOpen}
+        className="modal-danger"
+        contentClassName="bg-gradient-danger"
+        onClick={() => setModalUsernameOpen(false)}
+      >
+        <div className=" modal-header">
+          <h6 className=" modal-title" id="modal-title-notification">
+            Error in the form
+          </h6>
+          <button
+            aria-label="Close"
+            className=" close"
             onClick={() => setModalUsernameOpen(false)}
+            type="button"
           >
-            <div className=" modal-header">
-              <h6 className=" modal-title" id="modal-title-notification">
-                Error in the form
-              </h6>
-              <button
-                aria-label="Close"
-                className=" close"
-                onClick={() => setModalUsernameOpen(false)}
-                type="button"
-              >
-                <span aria-hidden={true}>×</span>
-              </button>
-            </div>
-            <div className=" modal-body">
-              <div className=" py-3 text-center">
-                <i className=" ni ni-bell-55 ni-3x"></i>
-                <h4 className=" heading mt-4">Error creating the user</h4>
-                <p>
-                  That username is already in use. Choose other.
-                </p>
-              </div>
-            </div>
-            <div className=" modal-footer">
-              <Button className=" btn-white" color="default" type="button">
-                Ok, Got it
-              </Button>
-              <Button
-                className=" text-white ml-auto"
-                color="link"
-                onClick={() => setModalNotificationOpen(false)}
-                type="button"
-              >
-                Close
-              </Button>
-            </div>
-          </Modal>
+            <span aria-hidden={true}>×</span>
+          </button>
+        </div>
+        <div className=" modal-body">
+          <div className=" py-3 text-center">
+            <i className=" ni ni-bell-55 ni-3x"></i>
+            <h4 className=" heading mt-4">Error creating the user</h4>
+            <p>
+              That username is already in use. Choose other.
+            </p>
+          </div>
+        </div>
+        <div className=" modal-footer">
+          <Button className=" btn-white" color="default" type="button">
+            Ok, Got it
+          </Button>
+          <Button
+            className=" text-white ml-auto"
+            color="link"
+            onClick={() => setModalNotificationOpen(false)}
+            type="button"
+          >
+            Close
+          </Button>
+        </div>
+      </Modal>
       <style jsx>{`
         .page {
           background: var(--geist-background);

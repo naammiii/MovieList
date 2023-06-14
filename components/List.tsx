@@ -118,7 +118,7 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
                                                         Edit
                                                     </button>
                                                     <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
@@ -159,7 +159,7 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
                                                         Edit
                                                     </button>
                                                     <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
@@ -199,7 +199,7 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
                                                         Edit
                                                     </button>
                                                     <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
@@ -238,7 +238,7 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
                                                         Edit
                                                     </button>
                                                     <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
@@ -278,7 +278,7 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
                                                         Edit
                                                     </button>
                                                     <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>

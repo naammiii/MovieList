@@ -16,7 +16,7 @@ function Home() {
             <Head>
                 <title>MovieList</title>
                 <link rel="icon" href="styles/images/logo.svg" />
-                <link id="theme-style" rel="stylesheet" href="/css/home.css"></link> 
+                <link id="theme-style" rel="stylesheet" href="/css/home.css"></link>
             </Head>
 
             <header id="header" className={styles.header}>

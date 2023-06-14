@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import prisma from '../../lib/prisma';
 import 'bootstrap/dist/css/bootstrap.css';
 import styles from '../../styles/Home.module.css';
+import { GetServerSideProps } from "next";
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic'
 import {
@@ -62,7 +63,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
   if (userid == undefined) {
     return (
       <>
-        <Layout username={userp.username}/>
+        <Layout username={userp.username} />
         <div className='position-absolute'>
           <Menu genres={genres} />
         </div>
@@ -101,62 +102,68 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
 
     return (
       <>
-        <div className={styles.container}>
-          <h1>Información de la película</h1>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Título de la película</h5>
-              <p className="card-text" id="titulo">{titleInfo.titleText.text}</p>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Género</h5>
-              <p className="card-text" id="genero"></p>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Sinopsis</h5>
-              <p className="card-text" id="sinopsis"></p>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Año de lanzamiento</h5>
-              <p className="card-text" id="lanzamiento"></p>
-            </div>
-          </div>
-          <Button
-            block
-            color="default"
-            onClick={() => setModalFormOpen(true)}
-            type="button"
-          >
-            ADD TO LIST
-          </Button>
-          <Modal isOpen={modalFormOpen} toggle={() => setModalFormOpen(false)}>
-            <div className=" modal-body p-0">
-              <Card className=" bg-primary shadow border-0">
+        <Layout username={userp.username} />
+        <div className='position-absolute'>
+          <Menu genres={genres} />
+        </div>
+        <div className='' style={{ marginTop: '80px' }}>
+          <div className="container">
+            <div className="card mt-5 ">
+              <div className="card-body d-flex">
+                <Image src={titleInfo.primaryImage.url} alt={titleInfo.originalTitleText.text} height={300} width={200} className='m-5' />
+                <div className='m-5'>
+                  <h5 className="card-title">{titleInfo.originalTitleText.text}</h5>
+                  <p className="card-text">{titleInfo.plot.plotText.plainText}</p>
+                  <p className="card-text"><strong>Genres:</strong> &nbsp; &nbsp;
+                    {titleInfo.genres.genres.map((genre) => {
+                      return (
+                        <a onClick={() => Router.push('/category/' + genre.text)} style={{ cursor: 'pointer' }} className="link-dark d-inline-flex text-decoration-none rounded">{genre.text}&nbsp; &nbsp; </a>
+                      )
+                    })}
+                  </p>
+                  <p className="card-text"><strong>Relase Year:</strong> {titleInfo.releaseYear.year}</p>
+                  <div className="card-text"><strong>Cast:</strong> &nbsp; &nbsp;
+                    {cast.map((actor) => {
+                      return (
+                        <p><u>{actor.node.name.nameText.text}</u> as <u>{actor.node.characters[0].name}</u> &nbsp; &nbsp; </p>
+                      )
+                    })}
+                  </div>
+                  <Button
+                    block
+                    color="default"
+                    onClick={() => setModalFormOpen(true)}
+                    type="button"
+                  >
+                    ADD TO LIST
+                  </Button>
+                </div>
 
-                <CardBody className=" px-lg-5 py-lg-5">
-                  <Form role="form" onSubmit={submitData}>
-                    <Label for="exampleSelect">Select List</Label>
-                    <Input type="select" name="select" id="exampleSelect" onChange={(e) => setList(e.target.value)} value={list}>
-                      {listname.map((list) => {
-                        return (
-                          <option value={list.id}>{list.name}</option>
-                        );
-                      })}
-                    </Input>
-                    <Button className=" my-4" color="primary" type="submit">
-                      Add
-                    </Button>
-                  </Form>
-                </CardBody>
-              </Card>
+              </div>
             </div>
-          </Modal>
+            <Modal isOpen={modalFormOpen} toggle={() => setModalFormOpen(false)}>
+              <div className=" modal-body p-0">
+                <Card className=" bg-primary shadow border-0">
+
+                  <CardBody className=" px-lg-5 py-lg-5">
+                    <Form role="form" onSubmit={submitData}>
+                      <Label for="exampleSelect">Select List</Label>
+                      <Input type="select" name="select" id="exampleSelect" onChange={(e) => setList(e.target.value)} value={list}>
+                        {listname.map((list) => {
+                          return (
+                            <option value={list.id}>{list.name}</option>
+                          );
+                        })}
+                      </Input>
+                      <Button className=" my-4" color="primary" type="submit">
+                        Add
+                      </Button>
+                    </Form>
+                  </CardBody>
+                </Card>
+              </div>
+            </Modal>
+          </div>
         </div>
       </>
     )
@@ -166,15 +173,15 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
 
 export default Title
 
-export async function getServerSideProps({req, res}, context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-      
-  const cookies = new Cookies(req.headers.cookie);
-  const userid = parseInt(cookies.get('userid')) ;
 
-const userp =  userid ? await prisma.user.findUnique({
+  const cookies = new Cookies(context.req.headers.cookie);
+  const userid = parseInt(cookies.get('userid'));
+
+  const userp = userid ? await prisma.user.findUnique({
     where: { id: userid }
-}) : '';
+  }) : '';
 
   const { titleid } = context.query
   const url = 'https://moviesdatabase.p.rapidapi.com/titles/' + titleid + '?info=base_info';
@@ -206,11 +213,11 @@ const userp =  userid ? await prisma.user.findUnique({
 
   const urlg = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
   const optionsg = {
-      method: 'GET',
-      headers: {
-          'X-RapidAPI-Key': apiKey,
-          'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-      }
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    }
   };
 
   const responseg = await fetch(urlg, optionsg);

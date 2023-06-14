@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 
 export default function Menu({ genres }) {
-  
+
   return (
     <div className="flex-shrink-0 p-3" style={{ width: '250px' }}>
       <ul className="list-unstyled ps-0">
@@ -14,7 +14,7 @@ export default function Menu({ genres }) {
             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               {genres.map((genre) => {
                 return (
-                  <li><a  onClick={() => Router.push('/category/' + genre)} style={{ cursor: 'pointer' }} className="link-dark d-inline-flex text-decoration-none rounded">{genre}</a></li>
+                  <li><a onClick={() => Router.push('/category/' + genre)} style={{ cursor: 'pointer' }} className="link-dark d-inline-flex text-decoration-none rounded">{genre}</a></li>
                 )
               })}
             </ul>

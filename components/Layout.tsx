@@ -4,7 +4,7 @@ import Menu from "./Menu";
 
 
 export default function Layout({ username }) {
-  return(
+  return (
     <div>
       <Header username={username} />
     </div>

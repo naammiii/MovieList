@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import Image from "next/image";
 import Router from 'next/router';
 import Cookies from 'universal-cookie';
+import { GetServerSideProps } from "next";
 
 import prisma from '../../lib/prisma';
 import Layout from '../../components/Layout';
@@ -35,7 +36,7 @@ const Category = ({ categoryTitle, genres, userp }) => {
             </div>
             <div className="container" style={{ marginTop: '80px' }}>
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    {categoryTitle.map((title) => {
+                    {categoryTitle.toReversed().map((title) => {
                         return (
                             <div className="col" onClick={() => Router.push('/title/' + title.id)}>
                                 <div className="card shadow-sm">
@@ -57,14 +58,14 @@ const Category = ({ categoryTitle, genres, userp }) => {
 
 export default Category
 
-export async function getServerSideProps({req, res}, context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    const cookies = new Cookies(req.headers.cookie);
-    const userid = parseInt(cookies.get('userid')) ;
-  
-  const userp =  userid ? await prisma.user.findUnique({
-      where: { id: userid }
-  }) : '';
+    const cookies = new Cookies(context.req.headers.cookie);
+    const userid = parseInt(cookies.get('userid'));
+
+    const userp = userid ? await prisma.user.findUnique({
+        where: { id: userid }
+    }) : '';
 
     const { id } = context.query;
     const url = 'https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=' + id.toLowerCase() + '&limit=21';
@@ -87,7 +88,7 @@ export async function getServerSideProps({req, res}, context) {
     for (let i = 0; i < 21; i++) {
         code = code + result[i] + '%2C';
     }
-    
+
     const urltv2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
     const optionstv2 = {
         method: 'GET',

@@ -8,14 +8,13 @@ import Cookies from 'universal-cookie';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
-  Button,
-  Modal
+    Button,
+    Modal
 } from "reactstrap";
 const cookies = new Cookies();
 const userid = cookies.get('userid');
 
-export default function Login ()
-{
+export default function Login() {
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
@@ -42,32 +41,34 @@ export default function Login ()
         }
     }
 
-    async function comparePassword(userpass, dbpass){
+    async function comparePassword(userpass, dbpass) {
         const body = { userpass, dbpass };
         try {
             const response = await fetch('/api/auth', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*", },
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                },
                 body: JSON.stringify(body),
             });
             try {
                 const data = await response.json();
                 const bool = data['success']
                 return bool;
-              } catch(e) {
+            } catch (e) {
                 console.log('error:', e.message);
-              }
+            }
 
         } catch (error) {
             console.error(error);
         }
     }
 
-    if(userid != undefined) {
+    if (userid != undefined) {
         Router.push('/home');
     }
-    else{
+    else {
         const verification = async (usernamev, passwordv) => {
             return getUsers()
                 .then(data => {
@@ -76,34 +77,34 @@ export default function Login ()
                     if (user) {
                         console.log('user ok');
                         return comparePassword(user['password'], passwordv).then((data) => {
-                            if(data) {
+                            if (data) {
                                 console.log('user pass ok');
                                 cookies.set('userid', user['id']);
                                 return true;
-                            }else{
+                            } else {
                                 console.log('user ok pass no');
                                 return false;
                             }
                         });
-                    }else{
+                    } else {
                         console.log('user no');
                         return false;
                     }
                 });
         }
-    
+
         const submitData = async (e: React.SyntheticEvent) => {
             e.preventDefault();
             verification(username, password).then((data) => {
                 console.log(data);
-                if(data) {
+                if (data) {
                     Router.push('/home');
-                }else{
+                } else {
                     setModalNotificationOpen(true)
                 }
             });
         };
-    
+
         return (
             <div>
                 <Head>
@@ -111,14 +112,14 @@ export default function Login ()
                     <link rel="icon" href="styles/images/logo.svg" />
                     <link id="theme-style" rel="stylesheet" href="/css/home.css"></link>
                 </Head>
-    
+
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                             <div className="card border-0 shadow rounded-3 my-5">
                                 <div className="card-body p-4 p-sm-5">
                                     <div className="d-flex justify-content-between">
-                                        <a  style={{cursor: 'pointer'}} onClick={() => Router.back()}><ArrowBackIcon /></a>
+                                        <a style={{ cursor: 'pointer' }} onClick={() => Router.back()}><ArrowBackIcon /></a>
                                         <h5
                                             className="card-title text-center mb-5 fw-light
                                         fs-5">
@@ -148,10 +149,10 @@ export default function Login ()
                                                 value={password}
                                             />
                                             <label htmlFor="floatingPassword">Password</label>
-    
+
                                         </div>
                                         <input disabled={!password || !username} type="submit" value="Enter" className="btn btn-primary btn-login text-uppercase fw-bold" />
-                                        <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{cursor: 'pointer'}} onClick={() => Router.push('/signup')}>
+                                        <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{ cursor: 'pointer' }} onClick={() => Router.push('/signup')}>
                                             Don't have an accout?
                                         </a>
                                     </form>
@@ -161,47 +162,47 @@ export default function Login ()
                     </div>
                 </div>
                 <Modal
-            isOpen={modalNotificationOpen}
-            className="modal-danger"
-            contentClassName="bg-gradient-danger"
-            onClick={() => setModalNotificationOpen(false)}
-          >
-            <div className=" modal-header">
-              <h6 className=" modal-title" id="modal-title-notification">
-                Error in the form
-              </h6>
-              <button
-                aria-label="Close"
-                className=" close"
-                onClick={() => setModalNotificationOpen(false)}
-                type="button"
-              >
-                <span aria-hidden={true}>×</span>
-              </button>
-            </div>
-            <div className=" modal-body">
-              <div className=" py-3 text-center">
-                <i className=" ni ni-bell-55 ni-3x"></i>
-                <h4 className=" heading mt-4">Error creating the user</h4>
-                <p>
-                  Username or password is incorrect.
-                </p>
-              </div>
-            </div>
-            <div className=" modal-footer">
-              <Button className=" btn-white" color="default" type="button">
-                Ok, Got it
-              </Button>
-              <Button
-                className=" text-white ml-auto"
-                color="link"
-                onClick={() => setModalNotificationOpen(false)}
-                type="button"
-              >
-                Close
-              </Button>
-            </div>
-          </Modal>
+                    isOpen={modalNotificationOpen}
+                    className="modal-danger"
+                    contentClassName="bg-gradient-danger"
+                    onClick={() => setModalNotificationOpen(false)}
+                >
+                    <div className=" modal-header">
+                        <h6 className=" modal-title" id="modal-title-notification">
+                            Error in the form
+                        </h6>
+                        <button
+                            aria-label="Close"
+                            className=" close"
+                            onClick={() => setModalNotificationOpen(false)}
+                            type="button"
+                        >
+                            <span aria-hidden={true}>×</span>
+                        </button>
+                    </div>
+                    <div className=" modal-body">
+                        <div className=" py-3 text-center">
+                            <i className=" ni ni-bell-55 ni-3x"></i>
+                            <h4 className=" heading mt-4">Error creating the user</h4>
+                            <p>
+                                Username or password is incorrect.
+                            </p>
+                        </div>
+                    </div>
+                    <div className=" modal-footer">
+                        <Button className=" btn-white" color="default" type="button">
+                            Ok, Got it
+                        </Button>
+                        <Button
+                            className=" text-white ml-auto"
+                            color="link"
+                            onClick={() => setModalNotificationOpen(false)}
+                            type="button"
+                        >
+                            Close
+                        </Button>
+                    </div>
+                </Modal>
                 <style jsx>{`
             .page {
               background: var(--geist-background);
@@ -226,7 +227,7 @@ export default function Login ()
               margin-left: 1rem;
             }
           `}</style>
-          </div>
+            </div>
         );
     }
 };

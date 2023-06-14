@@ -9,14 +9,15 @@ export default async function handle(req, res) {
   const result = await prisma.list.findFirst({
     where: {
       itemId: titleid,
-      userId: parseInt(userid)}
+      userId: parseInt(userid)
     }
+  }
   );
 
   const edit = await prisma.list.update({
-    where:{ listid : result.listid},
+    where: { listid: result.listid },
     data: {
-        category: { connect: { id: parseInt(categoryid) }}
+      category: { connect: { id: parseInt(categoryid) } }
     }
   })
 
