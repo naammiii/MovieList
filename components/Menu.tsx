@@ -7,7 +7,7 @@ export default function Menu({ genres }) {
     <div className="flex-shrink-0 p-3" style={{ width: '250px' }}>
       <ul className="list-unstyled ps-0">
         <li className="mb-1">
-          <button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true">
+          <button className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="true" style={{ backgroundColor: 'lightgrey', width: 'fit-content', fontFamily: 'courier, monospace', color: '#40babd', cursor: 'pointer'  }}>
             Genres
           </button>
           <div className="collapse" id="account-collapse">

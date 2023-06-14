@@ -38,8 +38,8 @@ const Category = ({ categoryTitle, genres, userp }) => {
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {categoryTitle.toReversed().map((title) => {
                         return (
-                            <div className="col" onClick={() => Router.push('/title/' + title.id)}>
-                                <div className="card shadow-sm">
+                            <div className="col d-flex justify-content-center" onClick={() => Router.push('/title/' + title.id)}>
+                                <div className="card shadow-sm rounded" style={{width: '200px'}}>
                                     <Image src={title.primaryImage.url} alt={title.titleText.text} height={300} width={200} />
                                     <div className="card-body">
                                         <p className="card-text">{title.originalTitleText.text}</p>

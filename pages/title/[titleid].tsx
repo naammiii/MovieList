@@ -53,7 +53,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      console.log('todo bien creo');
+      setModalFormOpen(false)
 
     } catch (err) {
       console.log(err);
@@ -143,11 +143,11 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
             </div>
             <Modal isOpen={modalFormOpen} toggle={() => setModalFormOpen(false)}>
               <div className=" modal-body p-0">
-                <Card className=" bg-primary shadow border-0">
+                <Card className="shadow border-0" style={{backgroundColor: '#40babd'}}>
 
                   <CardBody className=" px-lg-5 py-lg-5">
                     <Form role="form" onSubmit={submitData}>
-                      <Label for="exampleSelect">Select List</Label>
+                      <Label for="exampleSelect" style={{color: 'white'}}>SELECT LIST</Label>
                       <Input type="select" name="select" id="exampleSelect" onChange={(e) => setList(e.target.value)} value={list}>
                         {listname.map((list) => {
                           return (
@@ -155,7 +155,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
                           );
                         })}
                       </Input>
-                      <Button className=" my-4" color="primary" type="submit">
+                      <Button className=" my-4" color="secondary" type="submit">
                         Add
                       </Button>
                     </Form>

@@ -3,10 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import dynamic from 'next/dynamic'
-import { title } from 'process';
 import prisma from '../lib/prisma';
 import Cookies from 'universal-cookie';
-
 
 const Carousel = dynamic(() => import('../components/Carousel'))
 const Menu = dynamic(() => import('../components/Menu'))
@@ -14,12 +12,12 @@ const Layout = dynamic(() => import('../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-export default function Home({ titleInfo, titleTVInfo, genres, userp, code }) {
+export default function Home({ titleInfo, titleTVInfo, genres, userp }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
-    console.log(code);
+
     return (
         <div className={styles.container}>
             <Layout username={userp.username} />
@@ -27,16 +25,18 @@ export default function Home({ titleInfo, titleTVInfo, genres, userp, code }) {
                 <Menu genres={genres} />
             </div>
             <div className='' style={{ marginTop: '80px' }}>
-                <Carousel data={titleInfo} title={'Top Movies'} />
+                <Carousel data={titleInfo} title={'Top Movies'} swipe={true}/>
                 <br />
                 <br />
-                <Carousel data={titleTVInfo} title={'Top TV Series'} />
+                <Carousel data={titleTVInfo} title={'Top TV Series'} swipe={true}/>
             </div>
         </div>
 
     )
 }
-export async function getServerSideProps({ req, res }, context) {
+
+export async function getServerSideProps({ req, res }) {
+
     res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
@@ -67,9 +67,7 @@ export async function getServerSideProps({ req, res }, context) {
 
     var titleInfo = [];
     var code = String(result.slice(0, 9));
-    // for (let i = 0; i < 9; i++) {
-    //     code = code + result[i] + '%2C';
-    // }
+
     const url2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
     const options2 = {
         method: 'GET',
@@ -98,12 +96,9 @@ export async function getServerSideProps({ req, res }, context) {
         resulttv[index] = element.substring(7, 16);
     });
 
-
     var titleTVInfo = [];
     var code = String(resulttv.slice(0, 9));
-    // for (let i = 0; i < 9; i++) {
-    //     code = code + resulttv[i] + '%2C';
-    // }
+
     const urltv2 = 'https://moviesdatabase.p.rapidapi.com/titles/x/titles-by-ids?idsList=' + code;
     const optionstv2 = {
         method: 'GET',
@@ -130,7 +125,5 @@ export async function getServerSideProps({ req, res }, context) {
     genres = genres.results;
     genres.splice(0, 1);
 
-
-
-    return { props: { titleInfo, titleTVInfo, genres, userp, code } };
+    return { props: { titleInfo, titleTVInfo, genres, userp } };
 }

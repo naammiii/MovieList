@@ -54,7 +54,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                 </div>
                             </div>
                         </div>
-                        {recomendation.length != 0 ? <Carousel data={recomendation} title={'Because you watched ' + recMovName} /> : null}
+                        {recomendation.length != 0 ? <Carousel data={recomendation} title={'Because you watched ' + recMovName} swipe={false}/> : null}
                     </div>
 
                 </>
@@ -152,7 +152,7 @@ export const getServerSideProps = async (context) => {
         if (displaylist[2] != null) {
 
             const movcomp = displaylist[2].length;
-            const index = Math.floor(Math.random() * movcomp);
+            const index = Math.floor(Math.random() * (movcomp + 1));
 
             const recMov = displaylist[2][index];
             const recGen = recMov.genres.genres[0].text;
