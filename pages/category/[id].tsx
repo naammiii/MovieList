@@ -67,7 +67,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         where: { id: userid }
     }) : '';
 
-    const { id } = context.query;
+    let { id } = context.query;
+    id = String(id);
     const url = 'https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=' + id.toLowerCase() + '&limit=21';
     const options = {
         method: 'GET',
