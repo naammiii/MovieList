@@ -1,10 +1,28 @@
 
 // Header.tsx
-import React from 'react';
+import React, { useState } from "react";
 import Router from 'next/router';
 import Image from "next/image";
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+const userid: number = cookies.get('userid');
+
+import {
+    Button,
+    Card,
+    CardBody,
+    Form,
+    Input,
+    Modal,
+    Label,
+} from "reactstrap";
 
 export default function List({ listname, userP, isUser }) {
+
+    const [modalFormOpen, setModalFormOpen] = React.useState(false);
+    const [list, setList] = useState('');
+    const [title, setTitle] = useState('');
 
     var watching, completed, plantowatch, onhold, dropped = false
 
@@ -17,6 +35,42 @@ export default function List({ listname, userP, isUser }) {
     for (let i = 0; i < listname.length; i++) {
         const element = listname[i];
         if (!element.primaryImage) listname[i].primaryImage = { url: '/images/404PosterNotFound.jpg' }
+    }
+
+    async function delList(titleid, userid) {
+        const body = { titleid, userid };
+        try {
+            await fetch('/api/post/deleteList', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            });
+            console.log(titleid + ' - ' + userid);
+            Router.reload();
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const submitData = async (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        const categoryid = list;
+        const titleid = title;
+        const body = { titleid, userid, categoryid };
+        try {
+            await fetch('/api/post/editList', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            });
+            console.log(categoryid + ' - ' + titleid + ' - ' + userid);
+
+            // Router.reload();
+
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
@@ -62,15 +116,15 @@ export default function List({ listname, userP, isUser }) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            {isUser ? 
-                                            <td>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                </button>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Delete
-                                                </button>
-                                            </td> : null}
+                                            {isUser ?
+                                                <td>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
+                                                        Delete
+                                                    </button>
+                                                </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -103,15 +157,15 @@ export default function List({ listname, userP, isUser }) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            {isUser ? 
-                                            <td>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                </button>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Delete
-                                                </button>
-                                            </td> : null}
+                                            {isUser ?
+                                                <td>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
+                                                        Delete
+                                                    </button>
+                                                </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -143,15 +197,15 @@ export default function List({ listname, userP, isUser }) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            {isUser ? 
-                                            <td>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                </button>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Delete
-                                                </button>
-                                            </td> : null}
+                                            {isUser ?
+                                                <td>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
+                                                        Delete
+                                                    </button>
+                                                </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -182,15 +236,15 @@ export default function List({ listname, userP, isUser }) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            {isUser ? 
-                                            <td>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                </button>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Delete
-                                                </button>
-                                            </td> : null}
+                                            {isUser ?
+                                                <td>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
+                                                        Delete
+                                                    </button>
+                                                </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -222,15 +276,15 @@ export default function List({ listname, userP, isUser }) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            {isUser ? 
-                                            <td>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                </button>
-                                                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                                                    Delete
-                                                </button>
-                                            </td> : null}
+                                            {isUser ?
+                                                <td>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => {setTitle(entry.id), setModalFormOpen(true)}}>
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
+                                                        Delete
+                                                    </button>
+                                                </td> : null}
                                         </tr>
 
                                     </tbody>
@@ -239,6 +293,29 @@ export default function List({ listname, userP, isUser }) {
                         })) : ('No items found for this list')}
                     </table>
                 </div>
+                <Modal isOpen={modalFormOpen} toggle={() => setModalFormOpen(false)}>
+                    <div className=" modal-body p-0">
+                        <Card className=" bg-primary shadow border-0">
+
+                            <CardBody className=" px-lg-5 py-lg-5">
+                                <Form role="form" onSubmit={submitData}>
+                                    <Label for="exampleSelect">Select List</Label>
+                                    <Input type="select" name="select" id="exampleSelect" onChange={(e) => setList(e.target.value)} value={list}>
+                                        <option selected>Select List</option>
+                                        {listname.map((list) => {
+                                            return (
+                                                <option value={list.id}>{list.name}</option>
+                                            );
+                                        })}
+                                    </Input>
+                                    <Button className=" my-4" color="primary" type="submit">
+                                        Change
+                                    </Button>
+                                </Form>
+                            </CardBody>
+                        </Card>
+                    </div>
+                </Modal>
             </div>
 
         </>

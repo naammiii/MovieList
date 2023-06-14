@@ -14,7 +14,7 @@ const Layout = dynamic(() => import('../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-export default function Home({ titleInfo, titleTVInfo, genres, userp, userid }) {
+export default function Home({ titleInfo, titleTVInfo, genres, userp }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
@@ -131,5 +131,5 @@ export async function getServerSideProps({req, res}, context) {
 
 
 
-    return { props: { titleInfo, titleTVInfo, genres, userp, userid } };
+    return { props: { titleInfo, titleTVInfo, genres, userp } };
 }
