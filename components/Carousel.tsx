@@ -17,7 +17,7 @@ export default function Carousel({ data, title, swipe }) {
     if (!element.primaryImage) data[i].primaryImage = { url: '/images/404PosterNotFound.jpg' }
   }
 
-  if(swipe) data = data.toReversed();
+  if(swipe) data = data.slice().reverse();
 
   return (
     <>
