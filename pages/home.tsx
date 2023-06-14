@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import dynamic from 'next/dynamic'
 import { title } from 'process';
+import prisma from '../lib/prisma';
+import Cookies from 'universal-cookie';
+
 
 const Carousel = dynamic(() => import('../components/Carousel'))
 const Menu = dynamic(() => import('../components/Menu'))
@@ -11,17 +14,15 @@ const Layout = dynamic(() => import('../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-export default function Home({ titleInfo, titleTVInfo, genres, code, result }) {
+export default function Home({ titleInfo, titleTVInfo, genres, userp, userid }) {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
 
-    console.log(result);
-
     return (
         <div className={styles.container}>
-            <Layout />
+            <Layout username={userp.username} />
             <div className='position-absolute'>
                 <Menu genres={genres} />
             </div>
@@ -34,11 +35,19 @@ export default function Home({ titleInfo, titleTVInfo, genres, code, result }) {
 
     )
 }
-export async function getServerSideProps({req, res}) {
+export async function getServerSideProps({req, res}, context) {
     res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
       )
+
+      
+        const cookies = new Cookies(req.headers.cookie);
+      const userid = parseInt(cookies.get('userid')) ;
+
+    const userp =  userid ? await prisma.user.findUnique({
+        where: { id: userid }
+    }) : '';
 
     const url = 'https://imdb8.p.rapidapi.com/title/get-most-popular-movies?homeCountry=ES&purchaseCountry=ES&currentCountry=ES';
     const options = {
@@ -120,5 +129,7 @@ export async function getServerSideProps({req, res}) {
     genres = genres.results;
     genres.splice(0, 1);
 
-    return { props: { titleInfo, titleTVInfo, genres, code, result } };
+
+
+    return { props: { titleInfo, titleTVInfo, genres, userp, userid } };
 }

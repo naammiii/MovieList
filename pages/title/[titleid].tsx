@@ -28,7 +28,7 @@ const Layout = dynamic(() => import('../../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-const Title = ({ titleInfo, titleid, listname, cast, genres }) => {
+const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap');
@@ -62,7 +62,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres }) => {
   if (userid == undefined) {
     return (
       <>
-        <Layout />
+        <Layout username={userp.username}/>
         <div className='position-absolute'>
           <Menu genres={genres} />
         </div>
@@ -166,7 +166,16 @@ const Title = ({ titleInfo, titleid, listname, cast, genres }) => {
 
 export default Title
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req, res}, context) {
+
+      
+  const cookies = new Cookies(req.headers.cookie);
+  const userid = parseInt(cookies.get('userid')) ;
+
+const userp =  userid ? await prisma.user.findUnique({
+    where: { id: userid }
+}) : '';
+
   const { titleid } = context.query
   const url = 'https://moviesdatabase.p.rapidapi.com/titles/' + titleid + '?info=base_info';
   const options = {
@@ -210,5 +219,5 @@ export async function getServerSideProps(context) {
   genres.splice(0, 1);
 
 
-  return { props: { titleInfo, titleid, listname, cast, genres } };
+  return { props: { titleInfo, titleid, listname, cast, genres, userp } };
 }

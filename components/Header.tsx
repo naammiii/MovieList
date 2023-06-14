@@ -8,7 +8,8 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const userid = cookies.get('userid');
 
-const Header: React.FC = () => {
+
+export default function Header({ username }) {
   if(userid != undefined) {
   return (
     <nav className="navbar fixed-top navbar-light bg-light">
@@ -27,7 +28,7 @@ const Header: React.FC = () => {
           <PersonIcon />
         </a>
         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a className="dropdown-item" onClick={() => Router.push('/profile/user')} style={{ cursor: 'pointer' }}>Profile</a></li>
+          <li><a className="dropdown-item" onClick={() => Router.push('/profile/' + username)} style={{ cursor: 'pointer' }}>Profile</a></li>
           <li>
             <hr className="dropdown-divider"/>
           </li>
@@ -65,5 +66,3 @@ const Header: React.FC = () => {
     );
   }
 };
-
-export default Header;

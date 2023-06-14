@@ -2,13 +2,12 @@ import React, { ReactNode } from "react";
 import Header from "./Header";
 import Menu from "./Menu";
 
-const Layout: React.FC = () => {
+
+export default function Layout({ username }) {
   return(
     <div>
-      <Header />
+      <Header username={username} />
     </div>
   )
 
 }
-
-export default Layout;

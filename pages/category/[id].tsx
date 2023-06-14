@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import Image from "next/image";
 import Router from 'next/router';
+import Cookies from 'universal-cookie';
 
+import prisma from '../../lib/prisma';
 import Layout from '../../components/Layout';
 import Menu from '../../components/Menu';
 
@@ -10,7 +12,7 @@ import { useEffect } from 'react';
 
 const apiKey = process.env.API_KEY;
 
-const Category = ({ categoryTitle, genres }) => {
+const Category = ({ categoryTitle, genres, userp }) => {
 
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
@@ -27,7 +29,7 @@ const Category = ({ categoryTitle, genres }) => {
 
     return (
         <>
-            <Layout />
+            <Layout username={userp.username} />
             <div className='position-absolute'>
                 <Menu genres={genres} />
             </div>
@@ -55,7 +57,15 @@ const Category = ({ categoryTitle, genres }) => {
 
 export default Category
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req, res}, context) {
+
+    const cookies = new Cookies(req.headers.cookie);
+    const userid = parseInt(cookies.get('userid')) ;
+  
+  const userp =  userid ? await prisma.user.findUnique({
+      where: { id: userid }
+  }) : '';
+
     const { id } = context.query;
     const url = 'https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=' + id.toLowerCase() + '&limit=21';
     const options = {
@@ -104,5 +114,5 @@ export async function getServerSideProps(context) {
     genres = genres.results;
     genres.splice(0, 1);
 
-    return { props: { categoryTitle, genres } };
+    return { props: { categoryTitle, genres, userp } };
 }
