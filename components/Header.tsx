@@ -9,6 +9,10 @@ import { dividerClasses } from '@mui/material';
 const cookies = new Cookies();
 const userid = cookies.get('userid');
 
+function logout(){
+  cookies.remove('userid');
+  Router.push('/')
+}
 
 export default function Header({ username }) {
   return (
@@ -35,7 +39,7 @@ export default function Header({ username }) {
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
-                <li><a className="dropdown-item" onClick={() => Router.push('/logout')} style={{ cursor: 'pointer' }}>Sign out</a></li>
+                <li><a className="dropdown-item" onClick={() => logout()} style={{ cursor: 'pointer' }}>Sign out</a></li>
               </div>
               :
               <div>
