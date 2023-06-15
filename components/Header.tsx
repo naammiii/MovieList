@@ -32,7 +32,7 @@ export default function Header({ username }) {
             <PersonIcon />
           </a>
           <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            {userid
+            {userid != undefined
               ?
               <div>
                 <li><a className="dropdown-item" onClick={() => Router.push('/profile/' + username)} style={{ cursor: 'pointer' }}>Profile</a></li>
@@ -44,7 +44,8 @@ export default function Header({ username }) {
               :
               <div>
                 <li><a className="dropdown-item" onClick={() => Router.push('/login')} style={{ cursor: 'pointer' }}>Log in</a></li>
-                <li><a className="dropdown-item" onClick={() => Router.push('/signup')} style={{ cursor: 'pointer' }}>Sign up</a></li></div>}
+                <li><a className="dropdown-item" onClick={() => Router.push('/signup')} style={{ cursor: 'pointer' }}>Sign up</a></li>
+              </div>}
 
           </ul>
         </div>
