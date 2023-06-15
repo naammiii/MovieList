@@ -2,12 +2,25 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect } from 'react';
 import List from '../../components/List';
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import prisma from '../../lib/prisma';
 import dynamic from 'next/dynamic'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Carousel = dynamic(() => import('../../components/Carousel'))
+const Menu = dynamic(() => import('../../components/Menu'))
+const Layout = dynamic(() => import('../../components/Layout'))
+
+import {
+    Button,
+    Card,
+    CardBody,
+    Form,
+    Input,
+    Modal,
+    Label,
+} from "reactstrap";
 
 import Router from 'next/router';
 import Cookies from 'universal-cookie';
@@ -26,6 +39,37 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
     const router = useRouter();
     const { username } = router.query;
 
+    const [modalFormOpenP, setModalFormOpenP] = React.useState(false);
+    const [pass, setPass] = useState('');
+    const [passc, setPassc] = useState('');
+
+
+    const [modalNotificationErrorOpen, setModalNotificationErrorOpen] = React.useState(
+        false
+    );
+
+    async function changePassword() {
+        if (pass == passc) {
+
+            const body = { pass, userid };
+            try {
+                await fetch('/api/post/updatePass', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body),
+                });
+                
+
+            } catch (err) {
+            }
+
+        } else {
+            setModalFormOpenP(false);
+            setModalNotificationErrorOpen(true);
+        }
+    }
+
+
     if (userp) {
 
         var user = users.find(({ id }) => id == userid);
@@ -35,10 +79,11 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
         if (isUser) {
             return (
                 <>
-                    <div className="container">
+                    <Layout username={username}/>
+                    <div className="container mt-5">
                         <div className="row">
                             <div className="col-md-6 offset-md-3">
-                                <div className="card">
+                                <div className="card mt-5">
                                     <div className="card-body">
 
                                         <a style={{ cursor: 'pointer' }} onClick={() => Router.back()}><ArrowBackIcon /></a>
@@ -46,7 +91,9 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                         <div className="card-text">
 
                                             <p>Name: {userp.name}</p>
-                                            <p>Password: Change password</p>
+                                            <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setModalFormOpenP(true) }}>
+                                                Change Password
+                                            </button>
                                         </div>
                                         <hr />
                                     </div>
@@ -54,7 +101,67 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                 </div>
                             </div>
                         </div>
-                        {recomendation.length != 0 ? <Carousel data={recomendation} title={'Because you watched ' + recMovName} swipe={false}/> : null}
+                        {recomendation.length != 0 ? <Carousel data={recomendation} title={'Because you watched ' + recMovName} swipe={false} /> : null}
+                        <Modal isOpen={modalFormOpenP} toggle={() => setModalFormOpenP(false)}>
+                            <div className=" modal-body p-0">
+                                <Card className=" bg-primary shadow border-0">
+
+                                    <CardBody className=" px-lg-5 py-lg-5">
+                                        <Form role="form" method='post' onSubmit={changePassword}>
+                                            <Label for="exampleSelect">New Password</Label>
+                                            <Input type="password" name="select" id="newPass" onChange={(e) => setPass(e.target.value)} value={pass}></Input>
+                                            <Label for="exampleSelect">Confirm Password</Label>
+                                            <Input type="password" name="select" id="conPass" onChange={(e) => setPassc(e.target.value)} value={passc}></Input>
+                                            <Button className=" my-4" color="primary" type="submit">
+                                                Change
+                                            </Button>
+                                        </Form>
+                                    </CardBody>
+                                </Card>
+                            </div>
+                        </Modal>
+                        <Modal
+                            isOpen={modalNotificationErrorOpen}
+                            className="modal-danger"
+                            contentClassName="bg-gradient-danger"
+                            onClick={() => setModalNotificationErrorOpen(false)}
+                        >
+                            <div className=" modal-header">
+                                <h6 className=" modal-title" id="modal-title-notification">
+                                    Error in the form
+                                </h6>
+                                <button
+                                    aria-label="Close"
+                                    className=" close"
+                                    onClick={() => setModalNotificationErrorOpen(false)}
+                                    type="button"
+                                >
+                                    <span aria-hidden={true}>×</span>
+                                </button>
+                            </div>
+                            <div className=" modal-body">
+                                <div className=" py-3 text-center">
+                                    <i className=" ni ni-bell-55 ni-3x"></i>
+                                    <h4 className=" heading mt-4">Error creating the user</h4>
+                                    <p>
+                                        Password do not match. Please, try again.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className=" modal-footer">
+                                <Button className=" btn-white" color="default" type="button">
+                                    Ok, Got it
+                                </Button>
+                                <Button
+                                    className=" text-white ml-auto"
+                                    color="link"
+                                    onClick={() => setModalNotificationErrorOpen(false)}
+                                    type="button"
+                                >
+                                    Close
+                                </Button>
+                            </div>
+                        </Modal>
                     </div>
 
                 </>
@@ -63,10 +170,11 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
         else {
             return (
                 <>
-                    <div className="container">
+                <Layout username={username}/>
+                    <div className="container mt-5">
                         <div className="row">
                             <div className="col-md-6 offset-md-3">
-                                <div className="card">
+                                <div className="card mt-5">
                                     <div className="card-body">
                                         <a style={{ cursor: 'pointer' }} onClick={() => Router.back()}><ArrowBackIcon /></a>
                                         <h5 className="card-title">@{userp.username}'s profile. </h5>

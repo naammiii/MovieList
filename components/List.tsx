@@ -64,9 +64,8 @@ export default function List({ listname, userP, isUser }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             });
-            console.log(categoryid + ' - ' + titleid + ' - ' + userid);
 
-            // Router.reload();
+            Router.reload();
 
         } catch (err) {
             console.log(err);
@@ -112,7 +111,7 @@ export default function List({ listname, userP, isUser }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
+                                                        <a className="fw-bold mb-1" style={{ cursor: 'pointer' }} onClick={() => Router.push('/title/' + entry.id)}>{entry.originalTitleText.text}</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -153,7 +152,7 @@ export default function List({ listname, userP, isUser }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
+                                                        <a className="fw-bold mb-1" style={{ cursor: 'pointer' }} onClick={() => Router.push('/title/' + entry.id)}>{entry.originalTitleText.text}</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -193,7 +192,7 @@ export default function List({ listname, userP, isUser }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
+                                                        <a className="fw-bold mb-1" style={{ cursor: 'pointer' }} onClick={() => Router.push('/title/' + entry.id)}>{entry.originalTitleText.text}</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -232,7 +231,7 @@ export default function List({ listname, userP, isUser }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
+                                                        <a className="fw-bold mb-1" style={{ cursor: 'pointer' }} onClick={() => Router.push('/title/' + entry.id)}>{entry.originalTitleText.text}</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -272,7 +271,7 @@ export default function List({ listname, userP, isUser }) {
 
                                                     <Image className="rounded-circle" src={entry.primaryImage.url} height={45} width={45} alt='asw' />
                                                     <div className="ms-3">
-                                                        <p className="fw-bold mb-1">{entry.originalTitleText.text}</p>
+                                                        <a className="fw-bold mb-1" style={{ cursor: 'pointer' }} onClick={() => Router.push('/title/' + entry.id)}>{entry.originalTitleText.text}</a>
                                                     </div>
                                                 </div>
                                             </td>

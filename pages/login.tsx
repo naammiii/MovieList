@@ -9,8 +9,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
     Button,
-    Modal
+    Modal,
+    Spinner
 } from "reactstrap";
+
 const cookies = new Cookies();
 const userid = cookies.get('userid');
 
@@ -25,6 +27,8 @@ export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    
 
     async function getUsers() {
         try {
@@ -152,9 +156,13 @@ export default function Login() {
 
                                         </div>
                                         <input disabled={!password || !username} type="submit" value="Enter" className="btn btn-primary btn-login text-uppercase fw-bold" />
-                                        <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{ cursor: 'pointer' }} onClick={() => Router.push('/signup')}>
-                                            Don't have an accout?
-                                        </a>
+                                        <div className='d-flex justify-content-between'>
+                                            <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{ cursor: 'pointer' }} onClick={() => Router.push('/signup')}>
+                                                Don't have an accout?
+                                            </a>
+                                            <Spinner color="info">Loading...</Spinner>
+
+                                        </div>
                                     </form>
                                 </div>
                             </div>

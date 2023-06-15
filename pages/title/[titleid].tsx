@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import prisma from '../../lib/prisma';
 import 'bootstrap/dist/css/bootstrap.css';
-import styles from '../../styles/Home.module.css';
 import { GetServerSideProps } from "next";
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic'
@@ -29,7 +28,7 @@ const Layout = dynamic(() => import('../../components/Layout'))
 
 const apiKey = process.env.API_KEY;
 
-const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
+const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }) => {
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap');
@@ -45,18 +44,33 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp }) => {
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    let exist = false;
+    listofuser.forEach(entry => {
+      if(entry.itemId == titleid) exist = true;
+    });
     const categoryid = list;
-    const body = { titleid, userid, categoryid };
-    try {
-      await fetch('/api/post/addListItem', {
+    if(!exist){
+      const body = { titleid, userid, categoryid };
+      try {
+        await fetch('/api/post/addListItem', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        setModalFormOpen(false)
+  
+      } catch (err) {
+        console.log(err);
+      }
+    }else{
+      const body = { titleid, userid, categoryid };
+      await fetch('/api/post/editList', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-      });
-      setModalFormOpen(false)
+    });
 
-    } catch (err) {
-      console.log(err);
+    setModalFormOpen(false)
     }
   };
 
@@ -226,5 +240,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   genres.splice(0, 1);
 
 
-  return { props: { titleInfo, titleid, listname, cast, genres, userp } };
+  const listofuser = await prisma.list.findMany({
+    where: { userId: userid },
+  })
+
+  return { props: { titleInfo, titleid, listname, cast, genres, userp, listofuser } };
 }
