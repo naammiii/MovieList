@@ -1,3 +1,7 @@
+IMPORTANT:
+If you run this project in local, it will show an error message about the React hydration.
+It's not important, so you can just ignore the error.
+
 To run the project locally run the following command:
 
 npm run dev
