@@ -107,11 +107,11 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                 <Card className=" bg-primary shadow border-0">
 
                                     <CardBody className=" px-lg-5 py-lg-5">
-                                        <Form role="form" method='post' onSubmit={changePassword}>
+                                        <Form role="form" onSubmit={changePassword}>
                                             <Label for="exampleSelect">New Password</Label>
-                                            <Input type="password" name="select" id="newPass" onChange={(e) => setPass(e.target.value)} value={pass}></Input>
+                                            <Input type="password" id="newPass" onChange={(e) => setPass(e.target.value)} value={pass}></Input>
                                             <Label for="exampleSelect">Confirm Password</Label>
-                                            <Input type="password" name="select" id="conPass" onChange={(e) => setPassc(e.target.value)} value={passc}></Input>
+                                            <Input type="password" id="conPass" onChange={(e) => setPassc(e.target.value)} value={passc}></Input>
                                             <Button className=" my-4" color="primary" type="submit">
                                                 Change
                                             </Button>

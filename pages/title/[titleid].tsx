@@ -38,6 +38,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
 
   if (!titleInfo.primaryImage) titleInfo.primaryImage = { url: '/images/404PosterNotFound.jpg' }
   if (!titleInfo.releaseYear) titleInfo.releaseYear = { year: 'unknown' }
+  if (!titleInfo.plot) titleInfo.plot = { plotText:　{plainText: 'N/A'}  }
 
   console.log(cast);
 

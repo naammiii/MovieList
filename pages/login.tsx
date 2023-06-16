@@ -28,7 +28,7 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    
+    const [spinner, setSpinner] = useState(false);
 
     async function getUsers() {
         try {
@@ -99,12 +99,15 @@ export default function Login() {
 
         const submitData = async (e: React.SyntheticEvent) => {
             e.preventDefault();
+            setSpinner(true);
+
             verification(username, password).then((data) => {
                 console.log(data);
                 if (data) {
                     Router.push('/home');
                 } else {
                     setModalNotificationOpen(true)
+                    setSpinner(false);
                 }
             });
         };
@@ -160,7 +163,7 @@ export default function Login() {
                                             <a className="btn btn-inverse btn-login text-uppercase fw-bold" style={{ cursor: 'pointer' }} onClick={() => Router.push('/signup')}>
                                                 Don't have an accout?
                                             </a>
-                                            <Spinner color="info">Loading...</Spinner>
+                                            {spinner ? <Spinner color="info">Loading...</Spinner> : null}
 
                                         </div>
                                     </form>
@@ -191,7 +194,7 @@ export default function Login() {
                     <div className=" modal-body">
                         <div className=" py-3 text-center">
                             <i className=" ni ni-bell-55 ni-3x"></i>
-                            <h4 className=" heading mt-4">Error creating the user</h4>
+                            <h4 className=" heading mt-4">Error with the credetials</h4>
                             <p>
                                 Username or password is incorrect.
                             </p>

@@ -22,9 +22,9 @@ export default function Header({ username }) {
           <img src='/images/logo.svg' alt="Logo" width="35" height="35" />
         </a>
 
-        {/* <div className="navbar-item navbar-light bg-light">
-        <Search placeholder={'search'} data={{title: 'Game of thrones'}}/>
-      </div> */}
+        <div className="navbar-item navbar-light bg-light">
+        <Search placeholder={'search'}/>
+      </div>
 
         <div className="nav-item dropdown">
           <a className="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
