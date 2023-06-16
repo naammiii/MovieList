@@ -2,13 +2,15 @@ IMPORTANT:
 If you run this project in local, it will show an error message about the React hydration.
 It's not important, so you can just ignore the error.
 
-To run the project locally run the following command:
+You must have NODE installed
 
-npm run dev
-
-The dependencies are already installed, but in case it gives an error, run the following command
+You MUST install the dependencies with the following command:
 
 npm install
+
+To run this project in local, use the following command:
+
+npm run dev
 
 The aplication is deployed in the following url:
 

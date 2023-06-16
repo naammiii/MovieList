@@ -39,7 +39,13 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
   if (!titleInfo.primaryImage) titleInfo.primaryImage = { url: '/images/404PosterNotFound.jpg' }
   if (!titleInfo.releaseYear) titleInfo.releaseYear = { year: 'unknown' }
   if (!titleInfo.plot) titleInfo.plot = { plotText: { plainText: 'N/A' } }
+  cast.forEach(element => {
+    if (!element.node.characters) {
+      element.node.characters = [];
+      element.node.characters[0] = { name: 'N/A' };
 
+    }
+  });
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -76,7 +82,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
   if (userid == undefined) {
     return (
       <>
-        <Layout username={userp.username} />
+        <Layout username={'a'} />
         <div className='position-absolute'>
           <Menu genres={genres} />
         </div>
@@ -146,7 +152,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
                     block
                     onClick={() => setModalFormOpen(true)}
                     type="button"
-                    style={{color: 'white', backgroundColor: '#3aa7aa'}}
+                    style={{ color: 'white', backgroundColor: '#3aa7aa' }}
                   >
                     ADD TO LIST
                   </Button>
@@ -203,6 +209,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: { id: userid }
   }) : '';
 
+
   const { titleid } = context.query
   const url = 'https://moviesdatabase.p.rapidapi.com/titles/' + titleid + '?info=base_info';
   const options = {
@@ -245,10 +252,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   genres = genres.results;
   genres.splice(0, 1);
 
-
-  const listofuser = await prisma.list.findMany({
+  const listofuser = userid ? await prisma.list.findMany({
     where: { userId: userid },
-  })
+  }) : '';
+
 
   return { props: { titleInfo, titleid, listname, cast, genres, userp, listofuser } };
 }

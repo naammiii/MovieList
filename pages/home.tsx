@@ -62,7 +62,7 @@ export async function getServerSideProps({ req, res }) {
     const result = await response.json();
 
     result.forEach((element, index) => {
-        result[index] = element.substring(7, 16);
+        result[index] = element.substring(7, (element.length - 1));
     });
 
     var titleInfo = [];
@@ -93,7 +93,7 @@ export async function getServerSideProps({ req, res }) {
     const resulttv = await responsetv.json();
 
     resulttv.forEach((element, index) => {
-        resulttv[index] = element.substring(7, 16);
+        resulttv[index] = element.substring(7, (element.length - 1));
     });
 
     var titleTVInfo = [];

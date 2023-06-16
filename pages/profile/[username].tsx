@@ -292,7 +292,7 @@ export const getServerSideProps = async (context) => {
 
 
             resultrec.forEach((element, index) => {
-                resultrec[index] = element.substring(7, 16);
+                resultrec[index] = element.substring(7, (element.length - 1));
             });
 
             var code = '';

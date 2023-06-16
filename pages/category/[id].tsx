@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const result = await response.json();
 
     result.forEach((element, index) => {
-        result[index] = element.substring(7, 16);
+        result[index] = element.substring(7, (element.length - 1));
     });
 
     var code = '';
