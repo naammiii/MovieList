@@ -38,19 +38,17 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
 
   if (!titleInfo.primaryImage) titleInfo.primaryImage = { url: '/images/404PosterNotFound.jpg' }
   if (!titleInfo.releaseYear) titleInfo.releaseYear = { year: 'unknown' }
-  if (!titleInfo.plot) titleInfo.plot = { plotText:　{plainText: 'N/A'}  }
-
-  console.log(cast);
+  if (!titleInfo.plot) titleInfo.plot = { plotText: { plainText: 'N/A' } }
 
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     let exist = false;
     listofuser.forEach(entry => {
-      if(entry.itemId == titleid) exist = true;
+      if (entry.itemId == titleid) exist = true;
     });
     const categoryid = list;
-    if(!exist){
+    if (!exist) {
       const body = { titleid, userid, categoryid };
       try {
         await fetch('/api/post/addListItem', {
@@ -59,19 +57,19 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
           body: JSON.stringify(body),
         });
         setModalFormOpen(false)
-  
+
       } catch (err) {
         console.log(err);
       }
-    }else{
+    } else {
       const body = { titleid, userid, categoryid };
       await fetch('/api/post/editList', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-    });
+      });
 
-    setModalFormOpen(false)
+      setModalFormOpen(false)
     }
   };
 
@@ -127,7 +125,7 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
               <div className="card-body d-flex">
                 <Image src={titleInfo.primaryImage.url} alt={titleInfo.originalTitleText.text} height={300} width={200} className='m-5' />
                 <div className='m-5'>
-                  <h5 className="card-title">{titleInfo.originalTitleText.text}</h5>
+                  <h4 className="card-title">{titleInfo.originalTitleText.text}</h4>
                   <p className="card-text">{titleInfo.plot.plotText.plainText}</p>
                   <p className="card-text"><strong>Genres:</strong> &nbsp; &nbsp;
                     {titleInfo.genres.genres.map((genre) => {
@@ -146,9 +144,9 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
                   </div>
                   <Button
                     block
-                    color="default"
                     onClick={() => setModalFormOpen(true)}
                     type="button"
+                    style={{color: 'white', backgroundColor: '#3aa7aa'}}
                   >
                     ADD TO LIST
                   </Button>
@@ -158,11 +156,11 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
             </div>
             <Modal isOpen={modalFormOpen} toggle={() => setModalFormOpen(false)}>
               <div className=" modal-body p-0">
-                <Card className="shadow border-0" style={{backgroundColor: '#40babd'}}>
+                <Card className="shadow border-0" style={{ backgroundColor: '#40babd' }}>
 
                   <CardBody className=" px-lg-5 py-lg-5">
                     <Form role="form" onSubmit={submitData}>
-                      <Label for="exampleSelect" style={{color: 'white'}}>SELECT LIST</Label>
+                      <Label for="exampleSelect" style={{ color: 'white' }}>SELECT LIST</Label>
                       <Input type="select" name="select" id="exampleSelect" onChange={(e) => setList(e.target.value)} value={list}>
                         {listname.map((list) => {
                           return (
@@ -180,6 +178,13 @@ const Title = ({ titleInfo, titleid, listname, cast, genres, userp, listofuser }
             </Modal>
           </div>
         </div>
+        <style jsx>{`
+          @media only screen and (max-width: 768px) {
+            .d-flex{
+              display: block !important;
+            }
+          }
+          `}</style>
       </>
     )
   }

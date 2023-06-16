@@ -9,7 +9,6 @@ import dynamic from 'next/dynamic'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Carousel = dynamic(() => import('../../components/Carousel'))
-const Menu = dynamic(() => import('../../components/Menu'))
 const Layout = dynamic(() => import('../../components/Layout'))
 
 import {
@@ -58,7 +57,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body),
                 });
-                
+
 
             } catch (err) {
             }
@@ -79,7 +78,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
         if (isUser) {
             return (
                 <>
-                    <Layout username={username}/>
+                    <Layout username={username} />
                     <div className="container mt-5">
                         <div className="row">
                             <div className="col-md-6 offset-md-3">
@@ -91,7 +90,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                                         <div className="card-text">
 
                                             <p>Name: {userp.name}</p>
-                                            <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setModalFormOpenP(true) }}>
+                                            <button type="button" className="btn btn-link btn-sm btn-rounded changepass" onClick={() => { setModalFormOpenP(true) }}>
                                                 Change Password
                                             </button>
                                         </div>
@@ -163,6 +162,19 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                             </div>
                         </Modal>
                     </div>
+            <style jsx>{`
+            .changepass{
+                text-decoration: none;
+                color: #3aa7aa;
+                font-weight: bold;
+            }
+            .changepass:hover {
+                background-color: grey;
+                text-decoration: underline;
+                color: white;
+
+            }
+          `}</style>
 
                 </>
             );
@@ -170,7 +182,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
         else {
             return (
                 <>
-                <Layout username={username}/>
+                    <Layout username={username} />
                     <div className="container mt-5">
                         <div className="row">
                             <div className="col-md-6 offset-md-3">

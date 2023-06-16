@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import Router from 'next/router';
+import { Search } from "@mui/icons-material";
+import Image from "next/image";
 
 function SearchBar({ placeholder }) {
   const [filteredData, setFilteredData] = useState([]);
@@ -20,8 +22,13 @@ function SearchBar({ placeholder }) {
       };
       const response = await fetch(url, options);
       const result = await response.json();
-      const newFilter = result.d;
-      
+      let newFilter = result.d;
+
+      newFilter.forEach(Search => {
+        if (Search.id == '/imdbpicks/pride') newFilter.splice(0, 1)
+      });
+
+
       if (wordEntered === "") {
         setFilteredData([]);
       } else {
@@ -65,14 +72,29 @@ function SearchBar({ placeholder }) {
       {filteredData.length != 0 && (
         <div className="dataResult">
           {filteredData.map((value, key) => {
+            if (!value.i) value.i = { imageUrl: '/images/404PosterNotFound.jpg'  }
             return (
-              <a className="dataItem"  style={{ cursor: 'pointer' }} onClick={() => {Router.push('/title/' + value.id); clearInput();}} target="_blank">
-                <p>{value.l} </p>
-              </a>
+              <div className="d-flex justify-content-between m-1">
+                <a className="dataItem" style={{ cursor: 'pointer' }} onClick={() => { Router.push('/title/' + value.id); clearInput(); }} target="_blank">
+                {value.l}
+                </a>
+                <Image className="rounded-circle" src={value.i.imageUrl} height={30} width={30} alt='asw' />
+                
+              </div>
             );
           })}
         </div>
       )}
+
+      <style jsx>{`
+      a{
+          color: #3aa7aa;
+          text-decoration: none;
+      }
+      a:hover {
+          text-decoration: underline;
+      }
+      `}</style>
     </div>
   );
 }

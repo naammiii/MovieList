@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import styles from '../styles/Home.module.css';
 import Router from 'next/router';
 
-import Carousel from '../components/Carousel';
 import { useEffect } from 'react';
 
 function Home() {
@@ -40,7 +39,6 @@ function Home() {
                         <div id="navbar-collapse" className="navbar-collapse collapse">
                             <ul className="nav navbar-nav ms-md-auto">
                                 <li className="nav-item "><a className="nav-link scrollto" href="#about">About</a></li>
-                                <li className="nav-item"><a className="nav-link scrollto" href="#top">Top</a></li>
                                 <li className="nav-item"><a className="nav-link scrollto" href="#contact">Contact</a></li>
                                 <li className="nav-item"><a className="nav-link scrollto nav-access-btn font-weight-bold" onClick={() => Router.push('/home')} style={{ cursor: 'pointer' }}>Access
                                     the database</a></li>
@@ -126,11 +124,6 @@ function Home() {
 
                     </div>
                 </div>
-            </div>
-
-            <div id="top">
-
-                {/* <Carousel title='Top tv series' /> */}
             </div>
 
             <div id="contact" className="contact-section">

@@ -1,9 +1,10 @@
 
-// Header.tsx
 import React, { useState } from "react";
 import Router from 'next/router';
 import Image from "next/image";
 import Cookies from 'universal-cookie';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const cookies = new Cookies();
 const userid: number = cookies.get('userid');
@@ -117,11 +118,11 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
-                                                        Edit
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded edit" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
+                                                        <EditIcon />
                                                     </button>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
-                                                        Delete
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded delete" onClick={() => delList(entry.id, userid)}>
+                                                        <DeleteIcon />
                                                     </button>
                                                 </td> : null}
                                         </tr>
@@ -158,11 +159,11 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
-                                                        Edit
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded edit" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
+                                                        <EditIcon />
                                                     </button>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
-                                                        Delete
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded delete" onClick={() => delList(entry.id, userid)}>
+                                                        <DeleteIcon />
                                                     </button>
                                                 </td> : null}
                                         </tr>
@@ -198,11 +199,11 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
-                                                        Edit
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded edit" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
+                                                        <EditIcon />
                                                     </button>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
-                                                        Delete
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded delete" onClick={() => delList(entry.id, userid)}>
+                                                        <DeleteIcon />
                                                     </button>
                                                 </td> : null}
                                         </tr>
@@ -237,11 +238,11 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
-                                                        Edit
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded edit" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
+                                                        <EditIcon />
                                                     </button>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
-                                                        Delete
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded delete" onClick={() => delList(entry.id, userid)}>
+                                                        <DeleteIcon />
                                                     </button>
                                                 </td> : null}
                                         </tr>
@@ -277,11 +278,11 @@ export default function List({ listname, userP, isUser }) {
                                             </td>
                                             {isUser ?
                                                 <td>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
-                                                        Edit
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded edit" onClick={() => { setTitle(entry.id), setModalFormOpen(true) }}>
+                                                        <EditIcon />
                                                     </button>
-                                                    <button type="button" className="btn btn-link btn-sm btn-rounded" onClick={() => delList(entry.id, userid)}>
-                                                        Delete
+                                                    <button type="button" className="btn btn-link btn-sm btn-rounded delete" onClick={() => delList(entry.id, userid)}>
+                                                        <DeleteIcon />
                                                     </button>
                                                 </td> : null}
                                         </tr>
@@ -294,13 +295,11 @@ export default function List({ listname, userP, isUser }) {
                 </div>
                 <Modal isOpen={modalFormOpen} toggle={() => setModalFormOpen(false)}>
                     <div className=" modal-body p-0">
-                        <Card className=" bg-primary shadow border-0">
-
+                        <Card className=" bg-primary shadow border-0" style={{ backgroundColor: '#40babd' }}>
                             <CardBody className=" px-lg-5 py-lg-5">
                                 <Form role="form" onSubmit={submitData}>
                                     <Label for="exampleSelect">Select List</Label>
                                     <Input type="select" name="select" id="exampleSelect" onChange={(e) => setList(e.target.value)} value={list}>
-                                        <option selected>Select List</option>
                                         {listname.map((list) => {
                                             return (
                                                 <option value={list.id}>{list.name}</option>
@@ -316,7 +315,29 @@ export default function List({ listname, userP, isUser }) {
                     </div>
                 </Modal>
             </div>
-
+            <style jsx>{`
+            a{
+                color: #3aa7aa;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            button:hover, button:active{
+                color: #3aa7aa;
+                background-color: lightgrey;
+            }
+            .nav-link{
+                background-color: #3aa7aa;
+                color: white;
+            }
+            .delete{
+                color: red;
+            }
+            .edit{
+                color: blue;
+            }
+          `}</style>
         </>
     );
 }

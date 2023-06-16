@@ -1,5 +1,3 @@
-// pages/create.tsx
-
 import Head from 'next/head';
 import React, { useState } from 'react';
 import Router from 'next/router';
@@ -71,6 +69,11 @@ export default function Login() {
 
     if (userid != undefined) {
         Router.push('/home');
+        return(
+            <div className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
+                <Spinner color="info">Loading...</Spinner>
+            </div>
+        )
     }
     else {
         const verification = async (usernamev, passwordv) => {

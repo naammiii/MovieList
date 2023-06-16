@@ -1,15 +1,13 @@
-// Header.tsx
 import React from 'react';
 import Router from 'next/router';
 import Search from './Search';
 import PersonIcon from '@mui/icons-material/Person';
 import Cookies from 'universal-cookie';
-import { dividerClasses } from '@mui/material';
 
 const cookies = new Cookies();
 const userid = cookies.get('userid');
 
-function logout(){
+function logout() {
   cookies.remove('userid');
   Router.push('/')
 }
@@ -23,8 +21,8 @@ export default function Header({ username }) {
         </a>
 
         <div className="navbar-item navbar-light bg-light">
-        <Search placeholder={'search'}/>
-      </div>
+          <Search placeholder={'search'} />
+        </div>
 
         <div className="nav-item dropdown">
           <a className="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"

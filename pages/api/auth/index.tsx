@@ -1,5 +1,4 @@
-
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 export default async function handle(req, response) {
   var bool: boolean;
@@ -9,9 +8,12 @@ export default async function handle(req, response) {
       console.log(err);
     }
     if (match) {
-      return response.json({ success: true, message: 'passwords do match' });
+      return response.json({ success: true, message: "passwords do match" });
     } else {
-      return response.json({ success: false, message: 'passwords do not match' });
+      return response.json({
+        success: false,
+        message: "passwords do not match",
+      });
     }
   });
 }

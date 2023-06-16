@@ -1,16 +1,18 @@
-// pages/create.tsx
-
 import Head from 'next/head';
 import React, { useState } from 'react';
 import Router from 'next/router';
 import { useEffect } from 'react';
+import Cookies from 'universal-cookie';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
   Button,
-  Modal
+  Modal,
+  Spinner
 } from "reactstrap";
 
+const cookies = new Cookies();
+const userid = cookies.get('userid');
 const Signup: React.FC = () => {
 
   useEffect(() => {
@@ -80,6 +82,14 @@ const Signup: React.FC = () => {
     }
   };
 
+  if (userid != undefined) {
+    Router.push('/home');
+    return(
+        <div className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
+            <Spinner color="info">Loading...</Spinner>
+        </div>
+    )
+}
   return (
     <div>
       <Head>

@@ -25,10 +25,10 @@ export default function Home({ titleInfo, titleTVInfo, genres, userp }) {
                 <Menu genres={genres} />
             </div>
             <div className='' style={{ marginTop: '80px' }}>
-                <Carousel data={titleInfo} title={'Top Movies'} swipe={true}/>
+                <Carousel data={titleInfo} title={'Top Movies'} swipe={true} />
                 <br />
                 <br />
-                <Carousel data={titleTVInfo} title={'Top TV Series'} swipe={true}/>
+                <Carousel data={titleTVInfo} title={'Top TV Series'} swipe={true} />
             </div>
         </div>
 
