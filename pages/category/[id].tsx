@@ -17,8 +17,7 @@ const Category = ({ categoryTitle, genres, userp }) => {
     useEffect(() => {
         import('bootstrap/dist/js/bootstrap');
     }, []);
-    console.log('aaaaa');
-    console.log(categoryTitle);
+
 
     for (let i = 0; i < categoryTitle.length; i++) {
         const element = categoryTitle[i];
@@ -26,6 +25,8 @@ const Category = ({ categoryTitle, genres, userp }) => {
         if (element && !element.primaryImage) categoryTitle[i].primaryImage = { url: '/images/404PosterNotFound.jpg' }
         if (!element) categoryTitle.splice(i, 1);
     }
+
+
 
     return (
         <>
@@ -35,7 +36,7 @@ const Category = ({ categoryTitle, genres, userp }) => {
             </div>
             <div className="container" style={{ marginTop: '80px' }}>
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    {categoryTitle.toReversed().map((title) => {
+                    {categoryTitle.map((title) => {
                         return (
                             <div className="col d-flex justify-content-center" onClick={() => Router.push('/title/' + title.id)}>
                                 <div className="card shadow-sm rounded" style={{ width: '200px' }}>
@@ -99,9 +100,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
     const responsetv2 = await fetch(urltv2, optionstv2);
     const resulttv2 = await responsetv2.json();
-    let categoryTitle = resulttv2.results;
+    const categoryTitle = resulttv2.results;
 
-    categoryTitle = categoryTitle.slice().reverse();
 
     const urlg = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
     const optionsg = {
