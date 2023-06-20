@@ -103,7 +103,7 @@ export default function Profile({ users, listname, displaylist, userp, recomenda
                         {recomendation.length != 0 ? <Carousel data={recomendation} title={'Because you watched ' + recMovName} swipe={false} /> : null}
                         <Modal isOpen={modalFormOpenP} toggle={() => setModalFormOpenP(false)}>
                             <div className=" modal-body p-0">
-                                <Card className=" bg-primary shadow border-0">
+                                <Card className="shadow border-0" style={{ backgroundColor: '#40babd' }}>
 
                                     <CardBody className=" px-lg-5 py-lg-5">
                                         <Form role="form" onSubmit={changePassword}>
