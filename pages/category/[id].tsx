@@ -99,7 +99,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
     const responsetv2 = await fetch(urltv2, optionstv2);
     const resulttv2 = await responsetv2.json();
-    const categoryTitle = resulttv2.results;
+    let categoryTitle = resulttv2.results;
+
+    categoryTitle = categoryTitle.slice().reverse();
 
     const urlg = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
     const optionsg = {
